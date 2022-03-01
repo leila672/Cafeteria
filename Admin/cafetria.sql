@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2022 at 12:35 AM
+-- Generation Time: Mar 01, 2022 at 06:19 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -40,7 +40,7 @@ CREATE TABLE `order-product` (
 --
 
 CREATE TABLE `orders` (
-  `OID` int(100) NOT NULL,
+  `ID` int(100) NOT NULL,
   `OrderDate` datetime DEFAULT NULL,
   `Status` varchar(50) NOT NULL,
   `UserId` int(100) DEFAULT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `products` (
-  `PID` int(100) NOT NULL,
+  `ID` int(100) NOT NULL,
   `Pname` varchar(30) NOT NULL,
   `Price` float NOT NULL,
   `Category` varchar(100) NOT NULL,
@@ -68,13 +68,13 @@ CREATE TABLE `products` (
 --
 
 CREATE TABLE `users` (
-  `UID` int(100) NOT NULL,
+  `ID` int(100) NOT NULL,
   `Name` varchar(100) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `Password` varchar(100) NOT NULL,
   `RoomNo` int(100) NOT NULL,
   `Ext` varchar(100) NOT NULL,
-  `profile_picture` varchar(100) DEFAULT NULL,
+  `profile_picture` varchar(50) DEFAULT NULL,
   `role` varchar(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -82,7 +82,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UID`, `Name`, `Email`, `Password`, `RoomNo`, `Ext`, `profile_picture`, `role`) VALUES
+INSERT INTO `users` (`ID`, `Name`, `Email`, `Password`, `RoomNo`, `Ext`, `profile_picture`, `role`) VALUES
 (1, 'admin', 'admin@gmail.com', '12345678', 1, '666', NULL, 'admin'),
 (2, 'user1', 'user1@gmail.com', '12345678', 2, '1005', NULL, 'user');
 
@@ -101,20 +101,20 @@ ALTER TABLE `order-product`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`OID`),
+  ADD PRIMARY KEY (`ID`),
   ADD KEY `UserId` (`UserId`);
 
 --
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`PID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`UID`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -124,19 +124,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `OID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `PID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
