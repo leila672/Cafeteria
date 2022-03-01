@@ -93,7 +93,7 @@ $extensions= array("jpeg","jpg","png");
 $image="";
 if (in_array($ext, $extensions)){
     $image =addslashes($file_name);
-    move_uploaded_file($file_tmp,"up/".$file_name);
+    move_uploaded_file($file_tmp,"user_image/".$file_name);
 }
 else{
     $errors['img']="imgerorr";
