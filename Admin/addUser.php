@@ -113,7 +113,7 @@ $email=strtolower(trim(filter_var($_REQUEST["email"], FILTER_VALIDATE_EMAIL)));
 $password=trim(password_hash(htmlspecialchars($_POST['password']),PASSWORD_DEFAULT));
 $room=trim(htmlspecialchars($_POST['room']));
 $ext =trim(htmlspecialchars($_POST['ext']));
-    include_once("DataBase.php");
+    include_once("../DataBase.php");
     $mydb = new DataBase();
     try {
         $mydb ->connect();
