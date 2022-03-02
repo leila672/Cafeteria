@@ -18,10 +18,10 @@ class DataBase{
     public function insert_into( $table_name,...$args){
         $query = "INSERT INTO `$table_name` ";
         switch($table_name){
-            case 'users': $query.= ' ( `Name`, `Email`, `Password`, `RoomNo`, `Ext`, `profile_picture`, `role`)  VALUES(?,?,?,?,?,?,?)'; break;
-            case 'products': $query.= ' ( `Pname`, `Price`, `Category`, `Picture`) VALUES(?,?,?,?)'; break;
-            case 'orders': $query.= ' (`OrderDate`, `Status`, `UserId`, `TotalPrice`) VALUES(?,?,?,?)'; break;
-            case 'order-product': $query.= ' (`OID`, `PID`, `Quantity`) VALUES(?,?,?)'; break;
+            case 'users': $query.= ' ( `name`, `email`, `password`, `roomNum`, `ext`, `profile_Picture`, `role`)  VALUES(?,?,?,?,?,?,?)'; break;
+            case 'products': $query.= ' ( `name`,``price, `category`, `picture`) VALUES(?,?,?,?)'; break;
+            case 'orders': $query.= ' (`date`,`status`, `totalPrice`, `user_id`) VALUES(?,?,?,?)'; break;
+            case 'order-product': $query.= ' (`order_id`, `product_id`,`quantity`) VALUES(?,?,?)'; break;
         }
         $stmt = $this->db->prepare($query);
         $stmt->execute($args);
@@ -29,7 +29,8 @@ class DataBase{
 
 
     public function delete($table_name, $id){
-        $query = "DELETE FROM $table_name WHERE ID=$id";
+        $the_int_id = (int) $id;
+        $query = "DELETE FROM $table_name WHERE id=$the_int_id";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
     }
@@ -53,7 +54,8 @@ class DataBase{
         $stmt->execute();
     }
     public function select_row($table_name, $id){
-        $query ="SELECT * FROM $table_name WHERE ID= $id";
+        $the_int_id = (int) $id;
+        $query ="SELECT * FROM $table_name WHERE id= $the_int_id ";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -66,7 +68,31 @@ class DataBase{
         $result = $stmt->fetchAll();
         return $result;
     }
-   
+    public function users_table($table_name, ...$args){
+        echo "<table border='2'><tr>";
+        for($i = 0; $i < count($args);$i++){
+            echo"<th>$args[$i]</th>";
+        }
+        echo '</tr>';
+        $query = "SELECT * FROM $table_name;";
+        $stmt=$this->db->prepare($query);
+        $stmt->execute();
+        while ($obj = $stmt -> fetchObject()) {
+            echo '<tr>';
+                 for ($i = 0; $i < 2;$i++){
+                    echo '<td>';
+                    $something = $args[$i];
+                    echo $obj->$something;
+                    echo '</td>';
+                }
+                    echo "<td><img src='user_image/$obj->profile_Picture' style='width:50px;height:50px'></td>"; 
+                    echo "<td><a href='deleteUser.php?id=$obj->id'>delete</a> <a href='editUser.php?id=$obj->id'>edit</a></td>";
+                               
+            echo '</tr>';
+
+        }
+        echo '</table>';
+    }
     
  
 }
