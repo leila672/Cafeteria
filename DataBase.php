@@ -6,7 +6,7 @@ class DataBase{
     private $db;
 
     function __construct(){
-        $this->dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3306;';
+        $this->dsn = 'mysql:dbname=cafetria;host=127.0.0.1;port=3306;';
         $this->user =  'root';
         $this->password = "";
     }
@@ -67,31 +67,6 @@ class DataBase{
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
-    }
-    public function users_table($table_name, ...$args){
-        echo "<table border='2'><tr>";
-        for($i = 0; $i < count($args);$i++){
-            echo"<th>$args[$i]</th>";
-        }
-        echo '</tr>';
-        $query = "SELECT * FROM $table_name;";
-        $stmt=$this->db->prepare($query);
-        $stmt->execute();
-        while ($obj = $stmt -> fetchObject()) {
-            echo '<tr>';
-                 for ($i = 0; $i < 2;$i++){
-                    echo '<td>';
-                    $something = $args[$i];
-                    echo $obj->$something;
-                    echo '</td>';
-                }
-                    echo "<td><img src='user_image/$obj->profile_Picture' style='width:50px;height:50px'></td>"; 
-                    echo "<td><a href='deleteUser.php?id=$obj->id'>delete</a> <a href='editUser.php?id=$obj->id'>edit</a></td>";
-                               
-            echo '</tr>';
-
-        }
-        echo '</table>';
     }
     
  

@@ -21,6 +21,10 @@ if(empty($_POST['room'])){
     $errors['room']='room_error';
 }else{
     $old["old_room"]=$_REQUEST["room"];}
+if(empty($_POST['ext'])){
+        $errors['ext']='exterror';
+    }else{
+        $old["old_ext"]=$_REQUEST["ext"];}
 //check pattern validation 
 $pass_pattern = "/^[a-z0-9_]{6,10}$/";
 if (!empty($_POST['password'])&& !preg_match_all($pass_pattern, $_REQUEST["password"], $matches)) {
@@ -57,6 +61,7 @@ if(count($errors)>0){
             $str.=$o."=".$v."&";
         }
     }
+    header("Location:".$str);
  }
 else{ 
     //database connection and validation
@@ -81,12 +86,15 @@ $exist= false;
       if(!$exist){
         $mydb->insert_into("users", $userName, $email, $password,$room,$ext, $image,'user');   
       }
+      header("Location:allUsers.php");
     } catch (PDOException $e) {
         echo 'Connection failed: ' . $e->getMessage();
     }
     
 }
-header("Location:".$str);
+
+
+
 
 // echo "<pre>";
 // var_dump($userName);
@@ -94,7 +102,6 @@ header("Location:".$str);
 // var_dump($_POST['email']);
 // var_dump($password);
 // var_dump( $room,$ext);
-// var_dump(password_verify($_POST['password'],$password));
 // echo "</pre>";
 
 
