@@ -82,89 +82,95 @@
   <section class="container user-home">
     <h1> Orders </h1>
     <hr />
-   
-      <div class="container">
-        <div class="row">
-         
-            
-              <table class="table">
-                <thead class="thead-primary">
-                  <tr class="text-center">
-                    <th>Order Date</th>
-                    <th>Name</th>
-                    <th>Room</th>
-                    <th>Ext</th>
-                    <th>Action</th>
+
+    <div class="container">
+      <div class="row">
+
+
+        <table class="table">
+          <thead class="thead-primary">
+            <tr class="text-center">
+              <th>Order Details</th>
+              <th>Order Date</th>
+              <th>Name</th>
+              <th>Room</th>
+              <th>Ext</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+
+            include_once("../DataBase.php");
+            $db = new DataBase();
+            try {
+              $db->connect();
+              $orders = $db->showOrders();
+              if ($orders) {
+                foreach ($orders as $order) {
+            ?>
+                  <tr class="<?= $order['id'] ?>" data-bs-toggle="collapse" data-bs-target="<?php echo "#demo" . $order['id']?>"    >
+                    <td>
+                      <button class="btn btn-default btn-xs">
+                        <span>+</span>
+                      </button>
+                    </td>
+                    <td><?php echo $order["date"] ?></td>
+                    <td><?php echo $order["name"] ?></td>
+                    <td><?php echo $order["roomNum"] ?></td>
+                    <td><?php echo $order["ext"] ?></td>
+                    <td><?php echo $order["status"] ?></td>
+
                   </tr>
-                </thead>
-                <tbody>
-                  <?php
 
-                  include_once("../DataBase.php");
-                  $db = new DataBase();
-                  try {
-                    $db->connect();
-                    $orders = $db->showOrders();
-                    if ($orders) {
-                      foreach ($orders as $order) {
-                  ?>
-                        <tr class="<?= $order['id'] ?>">
-                          <td><?php echo $order["date"] ?></td>
-                          <td><?php echo $order["name"] ?></td>
-                          <td><?php echo $order["roomNum"] ?></td>
-                          <td><?php echo $order["ext"] ?></td>
-                          <td><?php echo $order["status"] ?></td>
+                  <tr class="<?= $order['id'] ?>">
+                    <td colspan="5" class="hiddenRow">
+                      <div class="collapse" id="<?php echo "demo" . $order['id'] ?>">
+                        <div class="container">
+                          <div class="row">
 
-                        </tr>
+                            <?php
+                            $products = $db->getProductsInOrders($order['id']);
 
-                        <tr class="<?= $order['id'] ?>">
-                          <td colspan="5">
-                            <div>
-                              <div class="container">
-                                <div class="row">
-
-                                  <?php
-                                  $products = $db->getProductsInOrders($order['id']);
-
-                                  foreach ($products as $product) {
-                                  ?>
-                                    <div class="col-xs-3 " style="margin: 10px;">
-                                      <div class="thumbnail">
-                                        <img src="<?php echo "images/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
-                                        <div class="caption">
-                                          <p>EGP <?php echo $product['price'] ?></p>
-                                          <p>Quantity <?php echo $product['quantity'] ?></p>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                  <?php
-                                  }
-                                  ?>
+                            foreach ($products as $product) {
+                            ?>
+                              <div class="col-xs-3 " style="margin: 10px;">
+                                <div class="thumbnail">
+                                  <img src="<?php echo "images/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
+                                  <div class="caption">
+                                    <p>EGP <?php echo $product['price'] ?></p>
+                                    <p>Quantity <?php echo $product['quantity'] ?></p>
+                                  </div>
                                 </div>
-                                <p> Total : <?php echo $order["totalPrice"] ?>
-                                <div>
-                                </div>
-                          </td>
-                        </tr>
-                  <?php
-                      }
-                    }
-                  } catch (PDOException $e) {
-                    echo 'Connection failed: ' . $e->getMessage();
-                  }
-                  ?>
-                </tbody>
+                              </div>
+
+                            <?php
+                            }
+                            ?>
+                          </div>
+                          <p> Total : <?php echo $order["totalPrice"] ?>
+                          <div>
+                          </div>
+                    </td>
+                  </tr>
+            <?php
+                }
+              }
+            } catch (PDOException $e) {
+              echo 'Connection failed: ' . $e->getMessage();
+            }
+            ?>
+          </tbody>
 
 
 
 
-              </table>
-            
-         
-        </div>
+        </table>
+
+
       </div>
-    
+    </div>
+
   </section>
 
 
@@ -188,6 +194,8 @@
   <script src="js/template/jquery.timepicker.min.js"></script>
   <script src="js/template/scrollax.min.js"></script>
   <script src="js/template/main.js"></script>
+  <script src="js/template/bootstrap.bundle.js"></script>
+
 
 </body>
 
