@@ -6,7 +6,7 @@ class DataBase{
     private $db;
 
     function __construct(){
-        $this->dsn = 'mysql:dbname=cafetria;host=127.0.0.1;port=3306;';
+        $this->dsn = 'mysql:dbname=cafeteria;host=127.0.0.1;port=3306;';
         $this->user =  'root';
         $this->password = "";
     }
@@ -95,4 +95,42 @@ class DataBase{
     }
     
  
+    public function showOrders()
+    {
+        $data = array();
+        try
+        {
+            $query = 'SELECT * FROM users 
+            JOIN orders ON users.id = orders.user_id  ORDER BY date DESC';
+            // WHERE status ="Processing"
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $orders = $stmt->fetchAll();
+            return $orders;
+        }
+        catch(PDOException $e)
+        {
+            return false;
+        }
+    }
+    public function getProductsInOrders($oid)
+    {
+        try
+        {
+            $sql_order = 'SELECT id, name,  price , picture , product_id, order_id, quantity  FROM orders_products
+             JOIN products 
+             ON orders_products.product_id = products.id
+              WHERE orders_products.order_id = '. $oid;
+            $stat = $this->db->prepare($sql_order);
+            $stat ->execute();
+            $orders_products = $stat->fetchAll();
+            return $orders_products;
+        }
+        catch(PDOException $e)
+        {
+            return false;
+        }
+    }
+
+
 }
