@@ -59,7 +59,7 @@
                                                                                                                                 echo $_REQUEST['old_email'];
                                                                                                                             } else echo ""; ?>">
                         <label style="color: red"><?php if (isset($_GET["email"])) {
-                                                        echo "email is requir <br>";
+                                                        echo "email is require <br>";
                                                     }
                                                     if (isset($_GET['wrongformat'])) {
                                                         echo "<br> Invalid email";
@@ -69,7 +69,7 @@
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" value="">
                         <label style="color: red"> <?php if (isset($_GET["password"])) {
-                                                        echo "Password is reqire ";
+                                                        echo "Password is require ";
                                                     }
                                                     if (isset($_GET['invalidpassword'])) {
                                                         echo "<br> Invalid password min length is 6";
