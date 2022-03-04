@@ -28,11 +28,7 @@ class DataBase
 
     public function connect()
     {
-        try {
-            $this->db = new PDO($this->dsn, $this->userName, $this->userPass);
-        } catch (PDOException $err) {
-            die($err->getMessage());
-        }
+        $this->db = new PDO($this->dsn, $this->userName, $this->userPass);
     }
 
 
