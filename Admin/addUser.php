@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Title Icon -->
+    <link rel="shortcut icon" href="../images/favicon.png" />
+
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -20,7 +23,7 @@
     ?>
     <!-- END nav -->
 
-   
+
 
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
@@ -57,7 +60,8 @@
                                                                                                                             } else echo ""; ?>">
                         <label style="color: red"><?php if (isset($_GET["email"])) {
                                                         echo "email is requir <br>";
-                                                    }  if (isset($_GET['wrongformat'])) {
+                                                    }
+                                                    if (isset($_GET['wrongformat'])) {
                                                         echo "<br> Invalid email";
                                                     } ?> </label>
                     </div>
@@ -84,8 +88,8 @@
                     <div class="col-md-4">
                         <label class="form-label">Room</label>
                         <input type="number" step="1" min="1" max="12" name="room" class="form-control" value="<?php if (isset($_REQUEST['old_room'])) {
-                                                                                        echo $_REQUEST['old_room'];
-                                                                                    } else echo ""; ?>">
+                                                                                                                    echo $_REQUEST['old_room'];
+                                                                                                                } else echo ""; ?>">
                         <label style="color: red"> <?php if (isset($_GET["room"])) {
                                                         echo "choose room";
                                                     } ?> </label>
@@ -93,8 +97,8 @@
                     <div class="col-md-4">
                         <label class="form-label">EXT</label>
                         <input type="number" step="1" min="1" max="700" name="ext" class="form-control" value="<?php if (isset($_REQUEST['old_ext'])) {
-                                                                                        echo $_REQUEST['old_ext'];
-                                                                                    } else echo ""; ?>">
+                                                                                                                    echo $_REQUEST['old_ext'];
+                                                                                                                } else echo ""; ?>">
                         <label style="color: red">
                             <?php if (isset($_GET["ext"])) {
                                 echo "ext is require <br>";
@@ -113,7 +117,7 @@
                     </div>
 
                     <div class="col-12 pt-5">
-                       <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
                     </div>
                 </form>
 
