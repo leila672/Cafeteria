@@ -65,7 +65,6 @@ for ($i = 0; $i < count($arrAllRows); $i++) {
 if (!$flagName && !$flagImage1 && !$flagImage2) {
     echo "1";
     try {
-        $db = new DataBase();
         $db->insert_into($tableNameProducts, $_POST['product'], $_POST['price'], $_POST['category'], $imageNameNoExt[0]);
     } catch (PDOException $e) {
         echo $e->getMessage();

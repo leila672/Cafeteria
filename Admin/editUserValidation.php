@@ -35,10 +35,10 @@ if (!empty($_POST['password']) && $_REQUEST["password"] != $_REQUEST["confirmpas
 if(isset($_FILES['img'])){
     $file_name = $_FILES['img']['name'];
     $file_tmp =$_FILES['img']['tmp_name'];
-    $ext= pathinfo($file_name,PATHINFO_EXTENSION);
+    $extenstion= pathinfo($file_name,PATHINFO_EXTENSION);
     $extensions= array("jpeg","jpg","png");
     
-    if (in_array($ext, $extensions)){
+    if (in_array($extenstion, $extensions)){
         $image =addslashes($file_name);
         move_uploaded_file($file_tmp,"user_image/".$file_name);
     }
@@ -59,28 +59,26 @@ if(isset($_FILES['img'])){
         $userName = strtolower(trim(htmlspecialchars($_REQUEST['name'])));
         $email = strtolower(trim(filter_var($_REQUEST["email"], FILTER_VALIDATE_EMAIL)));
         $password = trim(htmlspecialchars($_REQUEST['password']));
-        $room = trim(htmlspecialchars($_REQUEST['room']));
-        $ext = trim(htmlspecialchars($_REQUEST['ext']));
         $image = strtolower(trim(htmlspecialchars($image)));
-        include_once("../DataBase.php");
+         require_once("../DataBase.php");
         $mydb = new DataBase();
         try {
             $mydb->connect();
-            $mydb->update("users", $userId, "name", $userName, "email", $email, "password", $password, "roomNum", $room, "ext", $ext,"profile_Picture",$image);
-            header("Location:allUsers.php");
+            $mydb->update("users", $userId, "name", $userName, "email", $email, "password", $password, "roomNum", $_REQUEST['room'], "ext", $_REQUEST['ext'],"profile_Picture",$image);
+           header("Location:allUsers.php");
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
 
     }
-}
+   }
 
 // echo "<pre>";
 // var_dump($_REQUEST['name']);
 // var_dump($_REQUEST['password']);
 // var_dump($_REQUEST['email']);
-// var_dump($password);
-// var_dump( $room,$ext);
+// var_dump($image);
+// var_dump($_REQUEST['ext'],$_REQUEST['room']);
 // echo "</pre>";
        
 ?>
