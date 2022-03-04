@@ -90,14 +90,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `roomNum`, `ext`, `profi
 -- Dumping data for table `products`
 --
 
+
 INSERT INTO `products` (`id`, `name`, `price`, `category`, `picture`) VALUES
 (1, 'pepsi', '5', 'Beverages', 'pepsi'),
 (2, 'dew', '5', 'Beverages', 'dew'),
-(3, 'tea', '5', 'Hot Drinks', 'tea')
-(4, 'tea', '3', 'Hot Drinks', 'tea')
-(5, 'coffee', '8', 'Hot Drinks', 'coffee')
-(6, 'red wine', '30', 'Alcohol', 'redWine')
-(7, 'white wine', '30', 'Alcohol', 'whiteWine');
+(3, 'tea', '5', 'Hot Drinks', 'tea'),
+(4, 'coffee', '8', 'Hot Drinks', 'coffee'),
+(5, 'red wine', '30', 'Alcohol', 'redWine'),
+(6, 'white wine', '30', 'Alcohol', 'whiteWine');
 
 --
 -- Indexes for dumped tables
