@@ -26,6 +26,16 @@ class DataBase
         }
     }
 
+    public function connect()
+    {
+        try {
+            $this->db = new PDO($this->dsn, $this->userName, $this->userPass);
+        } catch (PDOException $err) {
+            die($err->getMessage());
+        }
+    }
+
+
     public function insert_into($table_name, ...$args)
     {
         $query = "INSERT INTO `$table_name` ";
