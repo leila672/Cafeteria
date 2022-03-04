@@ -14,7 +14,7 @@ function normalizing($input): string
     return htmlspecialchars($input);
 }
 
-include_once("../DataBase.php");
+ require_once("../DataBase.php");
 
 $db = new DataBase(12345);
 
@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
 
 
 
-// include_once("../DataBase.php");
+//  require_once("../DataBase.php");
 
 // if (!$flagName && !$flagImage) {
 //     echo "1";

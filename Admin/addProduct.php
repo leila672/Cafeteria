@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <?php require_once("navbar.php"); ?>
+    <?php   require_once("navbar.php"); ?>
 
     <section class="container">
         <div class="d-flex justify-content-between align-items-center pt-3" style="margin-top: 7rem;">

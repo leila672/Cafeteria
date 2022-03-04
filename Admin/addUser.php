@@ -19,7 +19,7 @@
 
 <body>
 
-    <?php require_once("navbar.php");
+    <?php  require_once("navbar.php");
     ?>
     <!-- END nav -->
 
@@ -36,7 +36,7 @@
 
     <section class="container user-home">
         <div class="d-flex justify-content-between align-items-center pt-3">
-            <h2>Add User</h2>
+            <h2><a href="#">Add User </a></h2>
         </div>
         <hr />
 
@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="col-12 pt-5">
-                        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        <input style=" border-radius: 10px;" type="submit" class="btn btn-primary" name="submit" value="Submit">
                     </div>
                 </form>
 
