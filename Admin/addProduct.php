@@ -28,33 +28,33 @@
         </div>
         <form class="row border rounded" action="" method="post" enctype="multipart/form-data">
             <fieldset class="m-3">
-                <div class="col-md-3">
+                <div class="col-md-3 mt-1">
                     <label class="form-label">Product</label>
-                    <input type="text" name="product" class="form-control" value="" required>
+                    <input type="text" name="product" class="form-control" value="" placeholder="Add Product name" style="width: 20rem;" required>
                 </div>
 
 
                 <hr>
                 <div class="col-md-3">
                     <label class="form-label">Price</label>
-                    <input type="number" class="custom-number" name="price" min="1" step="1" value="" required>
+                    <input type="number" class="custom-number" name="price" placeholder="Pounds" min="1" style="width: 20rem;" step="1" value="" required>
                 </div>
 
                 <hr>
                 <div class="row-md-3">
-                    <label class="form-label" style="margin-right: 6rem; margin-left:1rem;">Category</label>
+                    <label class="form-label" style="margin-right: 2rem; margin-left:1rem;">Category</label>
+
                     <select name="category" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
                         <option value="Hot Drinks">Hot Drinks</option>
                         <option value="Beverages">Beverages</option>
                         <option value="Alcohol">Alcohol</option>
                     </select>
-                </div>
 
-                <!-- <div class="row-md-3">
-                    <label class="form-label" style="font-size: large; margin-right: 3rem;">Category</label>
-                    <input type="number" step="1" min="1" max="12" name="room" class="form-control" value="">
-                </div> -->
+                    <span>
+                        <a href="" style="text-decoration: underline; margin-left: 2rem">Add Category</a>
+                    </span>
+                </div>
 
                 <hr>
                 <div class="row-md-6">
@@ -71,6 +71,7 @@
                     <div class="col-6">
                         <button class="btn btn-primary" type="submit" style="font-family: Tahoma;font-weight:bold;">Save</button>
                     </div>
+
                     <div class="col-6" style="font-family: Tahoma;">
                         <button class="btn btn-primary btn-danger" type="reset" style="font-family: Tahoma;font-weight:bold;">Reset</button>
                     </div>
