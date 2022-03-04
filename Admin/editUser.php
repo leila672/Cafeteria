@@ -1,3 +1,30 @@
+<?php
+$UserInfo = '';
+$userId = $_REQUEST['id'];
+$userName = '';
+$userEmail = '';
+$UserPass = '';
+$userRoom = '';
+$userPP = '';
+$role = '';
+$ext = '';
+include_once("../DataBase.php");
+$mydb = new DataBase();
+try {
+    $mydb->connect();
+    $UserInfo = $mydb->select_row("users", $userId);
+    $userName =  $UserInfo[0][1];
+    $userEmail = $UserInfo[0][2];
+    $UserPass = $UserInfo[0][3];
+    $userRoom = $UserInfo[0][4];
+    $ext = $UserInfo[0][5];
+    $userPP = $UserInfo[0][6];
+    $role = $UserInfo[0][7];
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+} ?>
+
+
 <!DOCTYpE html>
 <html lang="en">
 
@@ -20,8 +47,6 @@
     ?>
     <!-- END nav -->
 
-   
-
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
@@ -33,38 +58,34 @@
 
     <section class="container user-home">
         <div class="d-flex justify-content-between align-items-center pt-3">
-            <h2>Add User</h2>
+            <h2><a href="">Edit User</a></h2>
         </div>
         <hr />
 
         <div class="container">
             <div class="row">
-                <form class="row g-3 " method="post" enctype="multipart/form-data" action="addUserValidation.php">
+                <form class="row g-3 " method="post" enctype="multipart/form-data" action="editUserValidation.php?id=">
                     <div class="col-md-4">
                         <label>Name</label>
-                        <input type="text" name="name" class="form-control" value="<?php if (isset($_REQUEST['old_name'])) {
-                                                                                        echo $_REQUEST['old_name'];
-                                                                                    } else echo ""; ?>">
+                        <input type="text" name="name" class="form-control" value="<?php echo $userName; ?>">
+                        <input type="hidden" name="id" value="<?= $userId?>">
+                        <input type="hidden" name="userPP" value="<?= $userPP?>">
                         <label style="color: red">
-                            <?php if (isset($_GET["name"])) {
+                            <?php if (isset($_GET["emptyname"])) {
                                 echo "name is requir  <br>";
                             } ?> </label>
                     </div>
                     <div class="col-md-4">
                         <label>Email</label>
-                        <input type="text" name="email" class="form-control" aria-describedby="inputGroupPrepend" value="<?php if (isset($_REQUEST['old_email'])) {
-                                                                                                                                echo $_REQUEST['old_email'];
-                                                                                                                            } else echo ""; ?>">
-                        <label style="color: red"><?php if (isset($_GET["email"])) {
+                        <input type="text" name="email" class="form-control" aria-describedby="inputGroupPrepend" value="<?php echo $userEmail; ?>">
+                        <label style="color: red"><?php if (isset($_GET["emptyemail"])) {
                                                         echo "email is requir <br>";
-                                                    }  if (isset($_GET['wrongformat'])) {
-                                                        echo "<br> Invalid email";
                                                     } ?> </label>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" value="">
-                        <label style="color: red"> <?php if (isset($_GET["password"])) {
+                        <input type="password" name="password" class="form-control" value="<?php echo $UserPass; ?>">
+                        <label style="color: red"> <?php if (isset($_GET["emptypass"])) {
                                                         echo "Password is reqire ";
                                                     }
                                                     if (isset($_GET['invalidpassword'])) {
@@ -73,8 +94,8 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Confirm Password</label>
-                        <input type="password" name="confirmpassword" class="form-control" value="">
-                        <label style="color: red"> <?php if (isset($_GET["confirmpassword"])) {
+                        <input type="password" name="confirmpassword" class="form-control" value="<?php echo $UserPass; ?>">
+                        <label style="color: red"> <?php if (isset($_GET["emptyconf"])) {
                                                         echo "Password doent match";
                                                     }
                                                     if (isset($_GET['invalidpassword'])) {
@@ -83,27 +104,23 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Room</label>
-                        <input type="number" step="1" min="1" max="12" name="room" class="form-control" value="<?php if (isset($_REQUEST['old_room'])) {
-                                                                                        echo $_REQUEST['old_room'];
-                                                                                    } else echo ""; ?>">
-                        <label style="color: red"> <?php if (isset($_GET["room"])) {
+                        <input type="number"  step="1" min="1" max="12" name="room" class="form-control" value="<?php echo $userRoom; ?>">
+                        <label style="color: red"> <?php if (isset($_GET["emptyroom"])) {
                                                         echo "choose room";
                                                     } ?> </label>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">EXT</label>
-                        <input type="number" step="1" min="1" max="700" name="ext" class="form-control" value="<?php if (isset($_REQUEST['old_ext'])) {
-                                                                                        echo $_REQUEST['old_ext'];
-                                                                                    } else echo ""; ?>">
+                        <input  type="number" step="1" min="1" max="700" name="ext" class="form-control" value="<?php echo $ext; ?>">
                         <label style="color: red">
-                            <?php if (isset($_GET["ext"])) {
+                            <?php if (isset($_GET["emptyext"])) {
                                 echo "ext is require <br>";
                             } ?></label>
                     </div>
 
                     <div class="col-md-6">
                         <label for="validationCustom03" class="form-label">Image</label>
-                        <input type="file" name="img" class=" form-label  " id="validationCustom03">
+                        <input style="border-radius: 5px;" type="file" name="img" class=" form-label  " id="validationCustom03">
                         <div class="invalid-feedback">
                             <label style="color: red">
                                 <?php if (isset($_GET["img"])) {
@@ -113,7 +130,7 @@
                     </div>
 
                     <div class="col-12 pt-5">
-                       <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        <input style="border-radius: 5px;" type="submit" class="btn btn-primary" name="submit" value="Update">
                     </div>
                 </form>
 
@@ -122,12 +139,6 @@
         </div>
 
     </section>
-
-
-
-
-
-
 
     <script src="js/template/jquery.min.js"></script>
     <script src="js/template/jquery-migrate-3.0.1.min.js"></script>
@@ -148,3 +159,4 @@
 </body>
 
 </html>
+

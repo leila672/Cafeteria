@@ -18,10 +18,10 @@ class DataBase{
     public function insert_into( $table_name,...$args){
         $query = "INSERT INTO `$table_name` ";
         switch($table_name){
-            case 'users': $query.= ' ( `Name`, `Email`, `Password`, `RoomNo`, `Ext`, `profile_picture`, `role`)  VALUES(?,?,?,?,?,?,?)'; break;
-            case 'products': $query.= ' ( `Pname`, `Price`, `Category`, `Picture`) VALUES(?,?,?,?)'; break;
-            case 'orders': $query.= ' (`OrderDate`, `Status`, `UserId`, `TotalPrice`) VALUES(?,?,?,?)'; break;
-            case 'order-product': $query.= ' (`OID`, `PID`, `Quantity`) VALUES(?,?,?)'; break;
+            case 'users': $query.= ' ( `name`, `email`, `password`, `roomNum`, `ext`, `profile_Picture`, `role`)  VALUES(?,?,?,?,?,?,?)'; break;
+            case 'products': $query.= ' ( `name`,``price, `category`, `picture`) VALUES(?,?,?,?)'; break;
+            case 'orders': $query.= ' (`date`,`status`, `totalPrice`, `user_id`) VALUES(?,?,?,?)'; break;
+            case 'order-product': $query.= ' (`order_id`, `product_id`,`quantity`) VALUES(?,?,?)'; break;
         }
         $stmt = $this->db->prepare($query);
         $stmt->execute($args);
@@ -29,7 +29,8 @@ class DataBase{
 
 
     public function delete($table_name, $id){
-        $query = "DELETE FROM $table_name WHERE ID=$id";
+        $the_int_id = (int) $id;
+        $query = "DELETE FROM $table_name WHERE id=$the_int_id";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
     }
@@ -53,7 +54,8 @@ class DataBase{
         $stmt->execute();
     }
     public function select_row($table_name, $id){
-        $query ="SELECT * FROM $table_name WHERE ID= $id";
+        $the_int_id = (int) $id;
+        $query ="SELECT * FROM $table_name WHERE id= $the_int_id ";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll();
@@ -66,7 +68,44 @@ class DataBase{
         $result = $stmt->fetchAll();
         return $result;
     }
-   
     
  
+    public function showOrders()
+    {
+        $data = array();
+        try
+        {
+            $query = 'SELECT * FROM users 
+            JOIN orders ON users.id = orders.user_id  ORDER BY date DESC';
+            // WHERE status ="Processing"
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $orders = $stmt->fetchAll();
+            return $orders;
+        }
+        catch(PDOException $e)
+        {
+            return false;
+        }
+    }
+    public function getProductsInOrders($oid)
+    {
+        try
+        {
+            $sql_order = 'SELECT id, name,  price , picture , product_id, order_id, quantity  FROM orders_products
+             JOIN products 
+             ON orders_products.product_id = products.id
+              WHERE orders_products.order_id = '. $oid;
+            $stat = $this->db->prepare($sql_order);
+            $stat ->execute();
+            $orders_products = $stat->fetchAll();
+            return $orders_products;
+        }
+        catch(PDOException $e)
+        {
+            return false;
+        }
+    }
+
+
 }
