@@ -109,9 +109,9 @@
               if ($orders) {
                 foreach ($orders as $order) {
             ?>
-                  <tr class="<?= $order['id'] ?>" data-bs-toggle="collapse" data-bs-target="<?php echo "#demo" . $order['id']?>"    >
+                  <tr class="<?= $order['id'] ?>">
                     <td>
-                      <button class="btn btn-default btn-xs">
+                      <button class="btn btn-default btn-xs" data-bs-toggle="collapse" data-bs-target="<?php echo "#demo" . $order['id'] ?>">
                         <span>+</span>
                       </button>
                     </td>
@@ -119,7 +119,18 @@
                     <td><?php echo $order["name"] ?></td>
                     <td><?php echo $order["roomNum"] ?></td>
                     <td><?php echo $order["ext"] ?></td>
-                    <td><?php echo $order["status"] ?></td>
+                    <td>
+                      <select class="custom-select col-sm-6" id="status" onChange="changeStatus(this.value, <?php echo $order["id"] ?>)" name="status">
+                        <option value="">Select Action</option>
+                        <option value="Processing" <?php if ($order["status"] == "Processing") {
+                                                      echo "selected";
+                                                    } ?>>Processing</option>
+                        <option  value="done" <?php if ($order["status"] == "done") {
+                                                echo "selected";
+                                              } ?>>Delivered</option>
+                      </select>
+                      
+                    </td>
 
                   </tr>
 
@@ -177,8 +188,6 @@
 
 
 
-
-
   <script src="js/template/jquery.min.js"></script>
   <script src="js/template/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/template/popper.min.js"></script>
@@ -195,6 +204,34 @@
   <script src="js/template/scrollax.min.js"></script>
   <script src="js/template/main.js"></script>
   <script src="js/template/bootstrap.bundle.js"></script>
+
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+  function changeStatus(status, id) {
+    
+    $.ajax({
+      type:'POST',
+      url:'Ajax/status.php',
+      data: {
+        id:id,
+        ajax_type: "status",
+        status:status 
+        
+      },
+      
+      success: function(data) {
+        alert("order status has been changed ");
+      }
+    });
+
+    [...document.getElementsByClassName(`${id}`)].forEach((element) => {
+      element.remove()
+    })
+  }
+</script>
 
 
 </body>

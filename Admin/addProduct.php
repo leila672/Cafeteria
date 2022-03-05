@@ -1,3 +1,10 @@
+<?php
+include("errorPHPChecker.php");
+
+$errorName = !empty($_GET['errorName']) ? $_GET['errorName'] : "";
+$errorFile1 = !empty($_GET['errorFile1']) ? $_GET['errorFile1'] : "";
+$errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,11 +33,12 @@
         <div class="d-flex justify-content-between align-items-center pt-3" style="margin-top: 7rem;">
             <h2>Add Product</h2>
         </div>
-        <form class="row border rounded" action="" method="post" enctype="multipart/form-data">
+        <form class="row border rounded" action="addProductValidation.php" method="post" enctype="multipart/form-data">
             <fieldset class="m-3">
                 <div class="col-md-3 mt-1">
                     <label class="form-label">Product</label>
                     <input type="text" name="product" class="form-control" value="" placeholder="Add Product name" style="width: 20rem;" required>
+                    <span class="text-danger row" style="width: 20rem; margin-left:0.4rem;"><?php if (!empty($errorName)) echo "$errorName"; ?></span>
                 </div>
 
 
@@ -59,11 +67,12 @@
                 <hr>
                 <div class="row-md-6">
                     <div class="col ">
-                        <label class="form-label">Product Picture</label>
+                        <label class="form-label">Product Image</label>
                     </div>
                     <div class="col">
-                        <input class="form-control btn" name="productPicture" type="file" id="formFile" required>
-                    </div>
+                        <input class="form-control" name="productImage" type="file" id="formFile" required>
+                    </div><span class="text-danger" style="margin-left:1.5rem;"><?php if (!empty($errorFile1)) echo "$errorFile1"; ?></span>
+                    <span class="text-danger" style="margin-left:0.3rem;"><?php if (!empty($errorFile2)) echo "$errorFile2"; ?></span>
                 </div>
 
                 <hr>
