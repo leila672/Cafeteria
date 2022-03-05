@@ -14,7 +14,7 @@ class DataBase
         $this->serverName  = "localhost";
         $this->userName = "root";
         $this->userPass  = "";
-        $this->dbName = "cafetria";
+        $this->dbName = "cafeteria";
         $this->charSet = "utf8mb4";
 
         $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
@@ -137,6 +137,37 @@ class DataBase
             return true;
         } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function showusers()
+    {
+        
+        try {
+            $query = 'SELECT * FROM users 
+            JOIN orders ON users.id = orders.user_id ORDER BY date DESC';
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $orders = $stmt->fetchAll();
+            return $orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function userorders($uid)
+    {
+        
+        try {
+            $query = 'SELECT * FROM orders where  orders.user_id = ' . $uid .' ORDER BY date DESC';
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            return $user_orders;
+        } catch (PDOException $e) {
             return false;
         }
     }
