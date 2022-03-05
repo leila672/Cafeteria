@@ -11,71 +11,27 @@
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
-
+<style>
+  table{
+    font-size: larger;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
+</style>
 </head>
 
 <body>
 
-  <?php require_once("navbar.php");
+  <?php   require_once("navbar.php");
   ?>
   <!-- END nav -->
 
-  <section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-          <div class="col-md-8 col-sm-12 text-center ftco-animate">
-            <span class="subheading">Welcome</span>
-            <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-              necessary regelialia.</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-          <div class="col-md-8 col-sm-12 text-center ftco-animate">
-            <span class="subheading">Welcome</span>
-            <h1 class="mb-4">Amazing Taste &amp; Beautiful place</h1>
-            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-              necessary regelialia.</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-          <div class="col-md-8 col-sm-12 text-center ftco-animate">
-            <span class="subheading">Welcome</span>
-            <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-              necessary regelialia.</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
       <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
       <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
     </svg>
-  </div>
+  </div><br><br><br><br>
 
 
 
@@ -101,7 +57,7 @@
                 <tbody>
                   <?php
 
-                  include_once("../DataBase.php");
+                   require_once("../DataBase.php");
                   $db = new DataBase();
                   try {
                     $db->connect();
@@ -113,8 +69,8 @@
                           <td><?php echo $user["name"] ?></td>
                           <td><?php echo $user["roomNum"] ?></td>
                           <td><?php echo $user["ext"] ?></td>
-                          <td> <img src="<?php echo "user_image/". $user['profile_Picture'] ?>" class="col-xs-3" width="75px" class="img-rounded"></td>
-                          <td><a href='editUser.php?id=<?= $user['id'] ?>'>Edit </a> - <a href='deleteUser.php?id=<?= $user['id'] ?>'>Delete</a></td>
+                          <td> <img src="<?php echo "user_image/". $user['profile_Picture'] ?>" class="col-xs-3" width="150px" class="img-rounded"></td>
+                          <td><h5><a href='editUser.php?id=<?= $user['id'] ?>'>Edit </a> - <a href='deleteUser.php?id=<?= $user['id'] ?>'>Delete</a></h5></td>
                         </tr>
                   <?php
                       }

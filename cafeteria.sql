@@ -87,6 +87,19 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `roomNum`, `ext`, `profi
 (2, 'user1', 'user1@gmail.com', '12345678', 2, '15', NULL, 'user');
 
 --
+-- Dumping data for table `products`
+--
+
+
+INSERT INTO `products` (`id`, `name`, `price`, `category`, `picture`) VALUES
+(1, 'pepsi', '5', 'Beverages', 'pepsi'),
+(2, 'dew', '5', 'Beverages', 'dew'),
+(3, 'tea', '5', 'Hot Drinks', 'tea'),
+(4, 'coffee', '8', 'Hot Drinks', 'coffee'),
+(5, 'red wine', '30', 'Alcohol', 'redWine'),
+(6, 'white wine', '30', 'Alcohol', 'whiteWine');
+
+--
 -- Indexes for dumped tables
 --
 

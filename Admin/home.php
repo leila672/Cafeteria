@@ -16,7 +16,7 @@
 
 <body>
 
-  <?php require_once("navbar.php");
+  <?php   require_once("navbar.php");
   ?>
   <!-- END nav -->
 
@@ -101,7 +101,7 @@
           <tbody>
             <?php
 
-            include_once("../DataBase.php");
+             require_once("../DataBase.php");
             $db = new DataBase();
             try {
               $db->connect();

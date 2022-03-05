@@ -8,7 +8,7 @@ $userRoom = '';
 $userPP = '';
 $role = '';
 $ext = '';
-include_once("../DataBase.php");
+ require_once("../DataBase.php");
 $mydb = new DataBase();
 try {
     $mydb->connect();
@@ -43,7 +43,7 @@ try {
 
 <body>
 
-    <?php require_once("navbar.php");
+    <?php   require_once("navbar.php");
     ?>
     <!-- END nav -->
 

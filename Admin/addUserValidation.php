@@ -26,6 +26,7 @@ if(empty($_POST['ext'])){
     }else{
         $old["old_ext"]=$_REQUEST["ext"];}
 //check pattern validation 
+//^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
 $pass_pattern = "/^[a-z0-9_]{6,10}$/";
 if (!empty($_POST['password'])&& !preg_match_all($pass_pattern, $_REQUEST["password"], $matches)) {
     $errors["invalidpassword"]="invalid";
@@ -72,7 +73,7 @@ $room=trim(htmlspecialchars($_POST['room']));
 $ext =trim(htmlspecialchars($_POST['ext']));
 $image =strtolower(trim(htmlspecialchars($image)));
 $exist= false;
-    include_once("../DataBase.php");
+     require_once("../DataBase.php");
     $mydb = new DataBase();
     try {
         $mydb ->connect();
