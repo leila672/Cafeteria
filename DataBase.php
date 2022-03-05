@@ -6,7 +6,7 @@ class DataBase
     private $userPass;
     private $dbName;
     private $charSet;
-    private $pdo;
+    private $dsn;
     private $db;
 
     public function __construct()
@@ -14,13 +14,11 @@ class DataBase
         try {
             $this->serverName  = "localhost";
             $this->userName = "root";
-            $this->userPass  = "12345";
-            $this->dbName = "cafeteria";
+            $this->userPass  = "";
+            $this->dbName = "cafetria";
             $this->charSet = "utf8mb4";
 
-            $dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
-            $pdo = new PDO($dsn, $this->userName, $this->userPass);
-            $this->db = $pdo;
+            $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
         } catch (PDOException $err) {
             die($err->getMessage());
         }

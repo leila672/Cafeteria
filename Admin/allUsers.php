@@ -69,7 +69,7 @@
                           <td><?php echo $user["name"] ?></td>
                           <td><?php echo $user["roomNum"] ?></td>
                           <td><?php echo $user["ext"] ?></td>
-                          <td> <img src="<?php echo "user_image/". $user['profile_Picture'] ?>" class="col-xs-3" width="150px" class="img-rounded"></td>
+                          <td> <img src="<?php echo "user_image/". $user['profile_Picture'] ?>" class="col-xs-3" width="150px" height="150px" class="img-rounded"></td>
                           <td><h5><a href='editUser.php?id=<?= $user['id'] ?>'>Edit </a> - <a href='deleteUser.php?id=<?= $user['id'] ?>'>Delete</a></h5></td>
                         </tr>
                   <?php

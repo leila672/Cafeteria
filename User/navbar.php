@@ -1,7 +1,5 @@
 <?php
-session_start();
-$userName = $_SESSION['name'];
-$userImage= $_SESSION['profile_Picture'];
+require_once("sessionValidtion.php");
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
