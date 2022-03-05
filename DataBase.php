@@ -11,22 +11,22 @@ class DataBase
 
     public function __construct()
     {
-        try {
-            $this->serverName  = "localhost";
-            $this->userName = "root";
-            $this->userPass  = "";
-            $this->dbName = "cafetria";
-            $this->charSet = "utf8mb4";
+        $this->serverName  = "localhost";
+        $this->userName = "root";
+        $this->userPass  = "";
+        $this->dbName = "cafetria";
+        $this->charSet = "utf8mb4";
 
-            $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
-        } catch (PDOException $err) {
-            die($err->getMessage());
-        }
+        $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
     }
 
     public function connect()
     {
-        $this->db = new PDO($this->dsn, $this->userName, $this->userPass);
+        try {
+            $this->db = new PDO($this->dsn, $this->userName, $this->userPass);
+        } catch (PDOException $err) {
+            die($err->getMessage());
+        }
     }
 
 
@@ -102,7 +102,7 @@ class DataBase
         try {
             $query = 'SELECT * FROM users 
             JOIN orders ON users.id = orders.user_id WHERE status ="Processing" ORDER BY date DESC';
-            
+
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $orders = $stmt->fetchAll();
@@ -129,21 +129,15 @@ class DataBase
 
     public function changeOrderStatus($id, $status)
     {
-        try
-        {
-            
-            $sql = 'UPDATE `orders` SET `status`="'.$status.'" WHERE id ='.$id.' ';
+        try {
+
+            $sql = 'UPDATE `orders` SET `status`="' . $status . '" WHERE id =' . $id . ' ';
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             return true;
-        }
-        catch(PDOException $e)
-        {
+        } catch (PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
             return false;
         }
     }
-
 }
-
-
