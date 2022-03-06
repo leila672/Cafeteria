@@ -145,9 +145,7 @@ class DataBase
     {
         
         try {
-            $query = 'SELECT * FROM users 
-            JOIN orders ON users.id = orders.user_id ORDER BY date DESC';
-
+            $query = 'SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id GROUP BY name;';
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $orders = $stmt->fetchAll();
