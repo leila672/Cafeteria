@@ -7,10 +7,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    
+   
+
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .inline {
+
+            display: inline-block;
+
+            float: right;
+
+            margin: 20px 0px;
+
+        }
+
+        input,
+        button {
+
+            height: 34px;
+
+        }
+
+        .pag_items {
+
+            display: inline-block;
+            margin-left:420px;
+
+        }
+
+        .paginator{
+
+            font-weight: bold;
+
+            font-size: 18px;
+
+            color: white;
+
+            float: left;
+
+            padding: 8px 16px;
+
+            text-decoration: none;
+
+            border: 1px solid white;
+
+            margin: 2px;
+
+        }
+
+        .paginator.active {
+
+            background-color:  #e6ccb3;
+            color: black;
+
+        }
+
+        .paginator:hover:not(.active) {
+
+            background-color:  #e6ccb3;
+            color: #392613;
+
+        }
+    </style>
 
 </head>
 
@@ -57,11 +120,11 @@
                                             </button>
                                         </td>
                                         <td><?php echo $user["name"] ?></td>
-                                        <td><?php echo $user["totalPrice"] ?></td> 
+                                        <td><?php echo $user["totalPrice"] ?></td>
 
                                     </tr>
 
-                                    
+
 
                                     <!-- /------------------------end of users--------------------------/ -->
 
@@ -84,7 +147,7 @@
 
                                                                 foreach ($orders as $order) {
 
-                                                                  
+
                                                                 ?>
                                                                     <tr class="text-center" class="<?= $order['id'] ?>">
                                                                         <td>
@@ -95,11 +158,11 @@
                                                                         <td><?php echo $order["date"] ?></td>
                                                                         <td><?php echo $order["totalPrice"] ?></td>
                                                                     </tr>
-                                                                     <!-- /------------------------end of orders--------------------------/ -->
+                                                                    <!-- /------------------------end of orders--------------------------/ -->
 
-                                                                    <tr class="text-center" >
+                                                                    <tr class="text-center">
                                                                         <td colspan="5" class="hiddenRow" style="background-color: #e6cfbc ; width:20px; padding: 0px;">
-                                                                            <div  class="collapse" id="<?php echo "demoorder" . $order['id'] ?>">
+                                                                            <div class="collapse" id="<?php echo "demoorder" . $order['id'] ?>">
                                                                                 <div class="container">
                                                                                     <div class="row">
 
@@ -110,7 +173,7 @@
                                                                                         ?>
                                                                                             <div class="col-xs-3 " style="margin: 10px;">
                                                                                                 <div class="thumbnail">
-                                                                                                    <img src="<?php echo "images/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
+                                                                                                    <img src="<?php echo "product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
                                                                                                     <div class="caption">
                                                                                                         <p>EGP <?php echo $product['price'] ?></p>
                                                                                                         <p>Quantity <?php echo $product['quantity'] ?></p>
@@ -138,8 +201,12 @@
                                         </td>
                                     </tr>
 
-                        <?php
+                                <?php
                                 }
+                                ?>
+
+
+                        <?php
                             }
                         } catch (PDOException $e) {
                             echo 'Connection failed: ' . $e->getMessage();
@@ -150,14 +217,11 @@
 
                 </table>
 
-
+               
             </div>
         </div>
 
     </section>
-
-
-
 
 
     <script src="js/template/jquery.min.js"></script>
@@ -180,6 +244,9 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+   
 
     <script>
         function changeStatus(status, id) {

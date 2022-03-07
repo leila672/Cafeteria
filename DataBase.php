@@ -145,16 +145,38 @@ class DataBase
     {
         
         try {
-            $query = 'SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id GROUP BY name;';
-            $stmt = $this->db->prepare($query);
+
+            $limit = 2;
+
+            // update the active page number
+        
+            if (isset($_GET["page"])) {
+        
+              $page_number  = $_GET["page"];
+            } else {
+        
+              $page_number = 1;
+            }
+        
+            // get the initial page number
+        
+            $initial_page = ($page_number - 1) * $limit;
+        
+            // get data of selected rows per page 
+    
+            $query1 = "SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id  GROUP BY name  LIMIT $initial_page, $limit";
+            $stmt = $this->db->prepare($query1);
             $stmt->execute();
             $orders = $stmt->fetchAll();
-            return $orders;
+
+            return $orders ;
         } catch (PDOException $e) {
             return false;
         }
     }
 
+
+    
     public function userorders($uid)
     {
         
