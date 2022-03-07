@@ -157,6 +157,16 @@ class DataBase
         }
     }
 
+    public function paginate()
+    {
+        $query2="SELECT COUNT( distinct user_id) FROM orders";
+            $stmt2 = $this->db->prepare($query2);
+            $stmt2->execute();
+            $paginator = $stmt2->fetchAll();
+
+            return $paginator ;
+    }
+
     public function userorders($uid)
     {
         

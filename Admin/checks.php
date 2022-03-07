@@ -142,8 +142,12 @@
                     </tbody>
 
                 </table>
+                <?php
+                    require_once('paganitor.php');
 
-
+                ?>
+                <br> <br> <br> <br> <br> <br>
+                
             </div>
         </div>
 
@@ -173,6 +177,20 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        function go2Page()
+
+        {
+
+            var page = document.getElementById("page").value;
+
+            page = ((page > <?php echo $total_pages; ?>) ? <?php echo $total_pages; ?> : ((page < 1) ? 1 : page));
+
+            window.location.href = 'checks.php?page=' + page;
+
+        }
+    </script>
 
     <script>
         function changeStatus(status, id) {
