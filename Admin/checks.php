@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-    
-   
+
+
 
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -20,7 +20,7 @@
 
             display: inline-block;
 
-            float: right;
+            /* float: right; */
 
             margin: 20px 0px;
 
@@ -36,11 +36,11 @@
         .pag_items {
 
             display: inline-block;
-            margin-left:420px;
+            margin-left: 420px;
 
         }
 
-        .paginator{
+        .paginator {
 
             font-weight: bold;
 
@@ -62,14 +62,14 @@
 
         .paginator.active {
 
-            background-color:  #e6ccb3;
+            background-color: #e6ccb3;
             color: black;
 
         }
 
         .paginator:hover:not(.active) {
 
-            background-color:  #e6ccb3;
+            background-color: #e6ccb3;
             color: #392613;
 
         }
@@ -88,6 +88,11 @@
     <section class="container user-home">
         <h1> checks </h1>
         <hr />
+
+        <?php require_once("filters.php");
+        ?>
+
+        <br> <br>
 
         <div class="container">
             <div class="row">
@@ -108,106 +113,22 @@
                         $db = new DataBase();
                         try {
                             $db->connect();
-                            $users = $db->showusers();
-                            if ($users) {
-                                foreach ($users as $user) {
 
-                        ?>
-                                    <tr class="<?= $user['id'] ?>">
-                                        <td>
-                                            <button class="btn btn-default btn-xs" data-bs-toggle="collapse" data-bs-target="<?php echo "#demouser" . $user['id'] ?>">
-                                                <span>+</span>
-                                            </button>
-                                        </td>
-                                        <td><?php echo $user["name"] ?></td>
-                                        <td><?php echo $user["totalPrice"] ?></td>
+                            if (isset($_POST['submit'])) {
+                                $from = $_POST['from'];
+                                $to = $_POST['to'];
+                                $users = $db->showuserswithdate($from, $to);
 
-                                    </tr>
-
-
-
-                                    <!-- /------------------------end of users--------------------------/ -->
-
-                                    <tr class="<?= $user['id'] ?>">
-                                        <td colspan="5" class="hiddenRow">
-                                            <div class="collapse" id="<?php echo "demouser" . $user['id'] ?>">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <table class="table" style="width: 300px; margin-left:50px ; border : 2px solid white">
-                                                            <thead class="thead-primary" style="background-color: #9e7b5c ">
-                                                                <tr class="text-center">
-                                                                    <th> order details </th>
-                                                                    <th> date</th>
-                                                                    <th> price </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody style="background-color: #f7e2d0;">
-                                                                <?php
-                                                                $orders = $db->userorders($user['id']);
-
-                                                                foreach ($orders as $order) {
-
-
-                                                                ?>
-                                                                    <tr class="text-center" class="<?= $order['id'] ?>">
-                                                                        <td>
-                                                                            <button class="btn btn-default btn-xs" data-bs-toggle="collapse" data-bs-target="<?php echo "#demoorder" . $order['id'] ?>" style="background-color:#9e7b5c;">
-                                                                                <span style="color: white;">+</span>
-                                                                            </button>
-                                                                        </td>
-                                                                        <td><?php echo $order["date"] ?></td>
-                                                                        <td><?php echo $order["totalPrice"] ?></td>
-                                                                    </tr>
-                                                                    <!-- /------------------------end of orders--------------------------/ -->
-
-                                                                    <tr class="text-center">
-                                                                        <td colspan="5" class="hiddenRow" style="background-color: #e6cfbc ; width:20px; padding: 0px;">
-                                                                            <div class="collapse" id="<?php echo "demoorder" . $order['id'] ?>">
-                                                                                <div class="container">
-                                                                                    <div class="row">
-
-                                                                                        <?php
-                                                                                        $products = $db->getProductsInOrders($order['id']);
-
-                                                                                        foreach ($products as $product) {
-                                                                                        ?>
-                                                                                            <div class="col-xs-3 " style="margin: 10px;">
-                                                                                                <div class="thumbnail">
-                                                                                                    <img src="<?php echo "product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
-                                                                                                    <div class="caption">
-                                                                                                        <p>EGP <?php echo $product['price'] ?></p>
-                                                                                                        <p>Quantity <?php echo $product['quantity'] ?></p>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                        <?php
-                                                                                        }
-                                                                                        ?>
-
-                                                                                    </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <!-- /------------------------end of products--------------------------/ -->
-                                                                <?php
-                                                                }
-                                                                ?>
-                                                            </tbody>
-                                                        </table>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                <?php
-                                }
-                                ?>
-
-
-                        <?php
+                                require_once('checks_templete.php');
+                               
+                            
+                            } else {
+                                $users = $db->showusers();
+                                require_once('checks_templete.php');
+                               
                             }
+
+                           
                         } catch (PDOException $e) {
                             echo 'Connection failed: ' . $e->getMessage();
                         }
@@ -217,12 +138,13 @@
 
                 </table>
                 <?php
-                    require_once('paganitor.php');
-
                
+               if (!(isset($_POST['submit']))) {
+               require_once('paganitor.php');
+               }
                 ?>
                 <br> <br> <br> <br> <br> <br>
-                
+
             </div>
         </div>
 
@@ -251,7 +173,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-   
+
 
     <script>
         function go2Page()
