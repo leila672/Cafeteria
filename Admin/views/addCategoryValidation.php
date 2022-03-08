@@ -4,7 +4,7 @@ include("errorPHPChecker.php");
 
 $newCategory = $_POST['category'];
 
-include_once("../DataBase.php");
+include_once("../../DataBase.php");
 $tableNameProducts = "category";
 $dp = new DataBase();
 $dp->connect();

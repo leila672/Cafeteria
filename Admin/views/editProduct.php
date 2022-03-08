@@ -5,6 +5,17 @@ $errorName = !empty($_GET['errorName']) ? $_GET['errorName'] : "";
 $errorFile1 = !empty($_GET['errorFile1']) ? $_GET['errorFile1'] : "";
 $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
 
+
+include_once("../../database.php");
+
+// waiting product id from tableProducts page
+$id = $_REQUEST['id'];;
+
+$tableNameProducts = "products";
+$dp = new DataBase();
+$dp->connect();
+$productInfo = $dp->select_row($tableNameProducts, $id);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,17 +24,17 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
+    <title>Edit Product</title>
 
     <!-- Title Icon -->
     <link rel="shortcut icon" href="/Admin/images/favicon.png" />
 
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -32,13 +43,13 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
 
     <section class="container">
         <div class="d-flex justify-content-between align-items-center pt-3" style="margin-top: 7rem;">
-            <h2>Add Product</h2>
+            <h2>Edit Product</h2>
         </div>
-        <form class="row border rounded" action="addProductValidation.php" method="post" enctype="multipart/form-data">
+        <form class="row border rounded" action="editproductValidation.php?id=<?= $id ?>" method="post" enctype="multipart/form-data">
             <fieldset class="m-3">
                 <div class="col-md-3 mt-1">
                     <label class="form-label">Product</label>
-                    <input type="text" name="product" class="form-control" value="" placeholder="Add Product name" style="width: 20rem;" required>
+                    <input type="text" name="product" class="form-control" value="<?php echo $productInfo[0][1] ?>" placeholder="Add Product name" style="width: 20rem;" required>
                     <span class="text-danger row" style="width: 20rem; margin-left:0.4rem;"><?php if (!empty($errorName)) echo "$errorName"; ?></span>
                 </div>
 
@@ -46,7 +57,7 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
                 <hr>
                 <div class="col-md-3">
                     <label class="form-label">Price</label>
-                    <input type="number" class="custom-number" name="price" placeholder="Pounds" min="1" style="width: 20rem;" step="1" value="" required>
+                    <input type="number" class="custom-number" name="price" placeholder="Pounds" min="1" style="width: 20rem;" step="1" value="<?php echo $productInfo[0][2] ?>" required>
                 </div>
 
                 <hr>
@@ -56,12 +67,11 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
                         <option selected disabled value="">Choose...</option>
                         <?php
 
-                        include_once("../DataBase.php");
+                        include_once("../../database.php");
                         $tableNameProducts = "category";
                         $dp = new DataBase();
                         $dp->connect();
                         $categoryRows = $dp->select_All($tableNameProducts);
-
                         foreach ($categoryRows as $category) {
                         ?>
                             <option value="<?php echo $category['category'] ?>"><?php echo $category['category'] ?></option>
@@ -69,9 +79,6 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
                         }
                         ?>
                     </select>
-                    <span>
-                        <a href="addCategory.php" style="text-decoration: underline; margin-left: 2rem">Add Category</a>
-                    </span>
                 </div>
 
                 <hr>

@@ -16,10 +16,10 @@ include("errorPHPChecker.php");
 
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -43,7 +43,7 @@ include("errorPHPChecker.php");
                     </thead>
                     <tbody>
                         <?php
-                        include_once("../DataBase.php");
+                        include_once("../../database.php");
                         $tableNameProducts = "products";
                         $dp = new DataBase();
                         $dp->connect();
@@ -55,7 +55,7 @@ include("errorPHPChecker.php");
                                 <td><?php echo $product["name"] ?></td>
                                 <td><?php echo $product["price"] ?></td>
                                 <td><?php echo $product["category"] ?></td>
-                                <td> <img src="<?php echo "product_image/" . $product["picture"] ?>" class="col-xs-3" width="150px" height="150px"></td>
+                                <td> <img src="<?php echo "../images/product_image/" . $product["picture"] ?>" class="col-xs-3" width="150px" height="150px"></td>
                                 <td><?php echo $product["status"] ?></td>
                                 <td>
                                     <h5><a href='editProduct.php?id=<?= $product['id'] ?>'>Edit </a> - <a href='deleteProduct.php?id=<?= $product['id'] ?>'>Delete</a></h5>

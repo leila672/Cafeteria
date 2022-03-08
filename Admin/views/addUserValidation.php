@@ -45,7 +45,7 @@ $extensions= array("jpeg","jpg","png");
 $image="";
 if (in_array($ext, $extensions)){
     $image =addslashes($file_name);
-    move_uploaded_file($file_tmp,"user_image/".$file_name);
+    move_uploaded_file($file_tmp,"../images/user_image/".$file_name);
 }
 else{
     $errors['img']="imgerorr";
@@ -73,7 +73,7 @@ $room=trim(htmlspecialchars($_POST['room']));
 $ext =trim(htmlspecialchars($_POST['ext']));
 $image =strtolower(trim(htmlspecialchars($image)));
 $exist= false;
-     require_once("../DataBase.php");
+     require_once("../../DataBase.php");
     $mydb = new DataBase();
     try {
         $mydb ->connect();

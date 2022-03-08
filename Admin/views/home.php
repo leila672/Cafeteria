@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-  <link rel="stylesheet" href="css/animate.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/icomoon.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/animate.css">
+  <link rel="stylesheet" href="../css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../css/icomoon.css">
+  <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -21,7 +21,7 @@
   <!-- END nav -->
 
   <section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+    <div class="slider-item" style="background-image: url(../images/bg_1.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
+    <div class="slider-item" style="background-image: url(../images/bg_2.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="slider-item" style="background-image: url(images/bg_3.jpg);">
+    <div class="slider-item" style="background-image: url(../images/bg_3.jpg);">
       <div class="overlay"></div>
       <div class="container">
         <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -101,7 +101,7 @@
           <tbody>
             <?php
 
-             require_once("../DataBase.php");
+             require_once("../../database.php");
             $db = new DataBase();
             try {
               $db->connect();
@@ -147,7 +147,7 @@
                             ?>
                               <div class="col-xs-3 " style="margin: 10px;">
                                 <div class="thumbnail">
-                                  <img src="<?php echo "images/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
+                                  <img src="<?php echo "../images/product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
                                   <div class="caption">
                                     <p>EGP <?php echo $product['price'] ?></p>
                                     <p>Quantity <?php echo $product['quantity'] ?></p>
@@ -188,22 +188,22 @@
 
 
 
-  <script src="js/template/jquery.min.js"></script>
-  <script src="js/template/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/template/popper.min.js"></script>
-  <script src="js/template/bootstrap.min.js"></script>
-  <script src="js/template/jquery.easing.1.3.js"></script>
-  <script src="js/template/jquery.waypoints.min.js"></script>
-  <script src="js/template/jquery.stellar.min.js"></script>
-  <script src="js/template/owl.carousel.min.js"></script>
-  <script src="js/template/jquery.magnific-popup.min.js"></script>
-  <script src="js/template/aos.js"></script>
-  <script src="js/template/jquery.animateNumber.min.js"></script>
-  <script src="js/template/bootstrap-datepicker.js"></script>
-  <script src="js/template/jquery.timepicker.min.js"></script>
-  <script src="js/template/scrollax.min.js"></script>
-  <script src="js/template/main.js"></script>
-  <script src="js/template/bootstrap.bundle.js"></script>
+  <script src="../js/template/jquery.min.js"></script>
+  <script src="../js/template/jquery-migrate-3.0.1.min.js"></script>
+  <script src="../js/template/popper.min.js"></script>
+  <script src="../js/template/bootstrap.min.js"></script>
+  <script src="../js/template/jquery.easing.1.3.js"></script>
+  <script src="../js/template/jquery.waypoints.min.js"></script>
+  <script src="../js/template/jquery.stellar.min.js"></script>
+  <script src="../js/template/owl.carousel.min.js"></script>
+  <script src="../js/template/jquery.magnific-popup.min.js"></script>
+  <script src="../js/template/aos.js"></script>
+  <script src="../js/template/jquery.animateNumber.min.js"></script>
+  <script src="../js/template/bootstrap-datepicker.js"></script>
+  <script src="../js/template/jquery.timepicker.min.js"></script>
+  <script src="../js/template/scrollax.min.js"></script>
+  <script src="../js/template/main.js"></script>
+  <script src="../js/template/bootstrap.bundle.js"></script>
 
   
 

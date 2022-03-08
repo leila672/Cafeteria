@@ -10,10 +10,10 @@
 
 
 
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <style>
         .inline {
@@ -122,7 +122,7 @@
                     <tbody>
                         <?php
 
-                        require_once("../DataBase.php");
+                        require_once("../../database.php");
                         $db = new DataBase();
                         try {
                             $db->connect();
@@ -165,22 +165,22 @@
     </section>
 
 
-    <script src="js/template/jquery.min.js"></script>
-    <script src="js/template/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/template/popper.min.js"></script>
-    <script src="js/template/bootstrap.min.js"></script>
-    <script src="js/template/jquery.easing.1.3.js"></script>
-    <script src="js/template/jquery.waypoints.min.js"></script>
-    <script src="js/template/jquery.stellar.min.js"></script>
-    <script src="js/template/owl.carousel.min.js"></script>
-    <script src="js/template/jquery.magnific-popup.min.js"></script>
-    <script src="js/template/aos.js"></script>
-    <script src="js/template/jquery.animateNumber.min.js"></script>
-    <script src="js/template/bootstrap-datepicker.js"></script>
-    <script src="js/template/jquery.timepicker.min.js"></script>
-    <script src="js/template/scrollax.min.js"></script>
-    <script src="js/template/main.js"></script>
-    <script src="js/template/bootstrap.bundle.js"></script>
+    <script src="../js/template/jquery.min.js"></script>
+    <script src="../js/template/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../js/template/popper.min.js"></script>
+    <script src="../js/template/bootstrap.min.js"></script>
+    <script src="../js/template/jquery.easing.1.3.js"></script>
+    <script src="../js/template/jquery.waypoints.min.js"></script>
+    <script src="../js/template/jquery.stellar.min.js"></script>
+    <script src="../js/template/owl.carousel.min.js"></script>
+    <script src="../js/template/jquery.magnific-popup.min.js"></script>
+    <script src="../js/template/aos.js"></script>
+    <script src="../js/template/jquery.animateNumber.min.js"></script>
+    <script src="../js/template/bootstrap-datepicker.js"></script>
+    <script src="../js/template/jquery.timepicker.min.js"></script>
+    <script src="../js/template/scrollax.min.js"></script>
+    <script src="../js/template/main.js"></script>
+    <script src="../js/template/bootstrap.bundle.js"></script>
 
 
 

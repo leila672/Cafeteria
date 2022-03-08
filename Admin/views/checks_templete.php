@@ -62,7 +62,7 @@
                                                                                         ?>
                                                                                             <div class="col-xs-3 " style="margin: 10px;">
                                                                                                 <div class="thumbnail">
-                                                                                                    <img src="<?php echo "product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
+                                                                                                    <img src="<?php echo "../images/product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
                                                                                                     <div class="caption">
                                                                                                         <p>EGP <?php echo $product['price'] ?></p>
                                                                                                         <p>Quantity <?php echo $product['quantity'] ?></p>

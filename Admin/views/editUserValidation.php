@@ -40,7 +40,7 @@ if(isset($_FILES['img'])){
     
     if (in_array($extenstion, $extensions)){
         $image =addslashes($file_name);
-        move_uploaded_file($file_tmp,"user_image/".$file_name);
+        move_uploaded_file($file_tmp,"../images/user_image/".$file_name);
     }
     else{
         $errors['img']="imgerorr";
@@ -60,7 +60,7 @@ if(isset($_FILES['img'])){
         $email = strtolower(trim(filter_var($_REQUEST["email"], FILTER_VALIDATE_EMAIL)));
         $password = trim(htmlspecialchars($_REQUEST['password']));
         $image = strtolower(trim(htmlspecialchars($image)));
-         require_once("../DataBase.php");
+         require_once("../../database.php");
         $mydb = new DataBase();
         try {
             $mydb->connect();

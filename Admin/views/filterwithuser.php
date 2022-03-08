@@ -12,7 +12,7 @@
                 <?php
 
 
-                require_once("../DataBase.php");
+                require_once("../../database.php");
                 $db = new DataBase();
                 try {
                     $db->connect();

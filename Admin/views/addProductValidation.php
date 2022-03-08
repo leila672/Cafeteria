@@ -6,9 +6,6 @@ ini_set('file_uploads', 1);
 
 $productName = $_POST["product"];
 
-$id = $_REQUEST['id'];
-$newCategory = $_POST['category'];
-
 $errorName = $errorFile1 = $errorFile2 = "";
 
 $flagName = 0; // Name checker flag
@@ -23,7 +20,7 @@ function normalizing($input): string
 }
 
 // Image validator
-$targetDir = "product_image";
+$targetDir = "../images/product_image";
 $fileName = $_FILES['productImage']['name'];
 $targetFilePath = $targetDir . $fileName;
 $file_tmp = $_FILES['productImage']['tmp_name'];
@@ -33,7 +30,7 @@ if (
     $imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpg"
     || $imageFileType == "gif"
 ) {
-    move_uploaded_file($file_tmp, "product_image/" . $fileName);
+    move_uploaded_file($file_tmp, "../images/product_image/" . $fileName);
 } else {
     echo "55";
     $flagImage1 = 1;
@@ -42,7 +39,7 @@ if (
 
 
 // Database validator
-include_once("../DataBase.php");
+include_once("../../DataBase.php");
 
 $tableNameProducts = "products";
 
@@ -58,7 +55,7 @@ for ($i = 0; $i < count($arrAllRows); $i++) {
     if (strtolower($arrAllRows[$i][1]) == strtolower($productName)) {
         echo "1";
         $flagName = 1;
-        $errorName = "Change to new product name to edit successfully";
+        $errorName = "Product already exists add another one";
     }
     if (strtolower($arrAllRows[$i][4]) == strtolower($imageNameNoExt[0])) {
         $errorfile2 = "Image already exists pick another one";
@@ -66,25 +63,16 @@ for ($i = 0; $i < count($arrAllRows); $i++) {
     }
 }
 
-foreach ($arrAllRows as $key => $value) {
-    if ($value[0] == $id) {
-        $oldCategory = $arrAllRows[$key];
-    }
-}
-
-
 if (!$flagName && !$flagImage1 && !$flagImage2) {
     echo "1";
     try {
-        $dp->update_Table($id, $_POST['product'], $_POST['price'], $_POST['category'], $imageNameNoExt[0]);
-        if ($newCategory != $oldCategory) {
-            $dp->update_Category($newCategory, $oldCategory[3]);
-        }
+        $dp->insert_Product($_POST['product'], $_POST['price'], $_POST['category'], $imageNameNoExt[0]);
     } catch (PDOException $err) {
         echo "error";
         die($err->getMessage());
     }
-    header("Location:tableProducts.php");
-} else {
-    header("Location:editProduct.php?id=$id&errorName=$errorName&errorFile1=$errorFile1&errorFile2=$errorfile2");
+}
+// header("Location:tablePage.php");
+else {
+    header("Location:addProduct.php?errorName=$errorName&errorFile1=$errorFile1&errorFile2=$errorfile2");
 }
