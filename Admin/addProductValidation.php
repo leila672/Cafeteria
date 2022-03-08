@@ -43,11 +43,13 @@ include_once("../DataBase.php");
 
 $tableNameProducts = "products";
 
-$db = new DataBase();
+$dp = new DataBase();
+
+$dp->connect();
 
 $imageNameNoExt = explode(".", $fileName);
 
-$arrAllRows = $db->select_All($tableNameProducts);
+$arrAllRows = $dp->select_All($tableNameProducts);
 
 for ($i = 0; $i < count($arrAllRows); $i++) {
     if (strtolower($arrAllRows[$i][1]) == strtolower($productName)) {
@@ -61,15 +63,16 @@ for ($i = 0; $i < count($arrAllRows); $i++) {
     }
 }
 
-
 if (!$flagName && !$flagImage1 && !$flagImage2) {
     echo "1";
     try {
-        $db->insert_into($tableNameProducts, $_POST['product'], $_POST['price'], $_POST['category'], $imageNameNoExt[0]);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
+        $dp->insert_Product($_POST['product'], $_POST['price'], $_POST['category'], $imageNameNoExt[0]);
+    } catch (PDOException $err) {
+        echo "error";
+        die($err->getMessage());
     }
-    // header("Location:tablePage.php");
-} else {
+}
+// header("Location:tablePage.php");
+else {
     header("Location:addProduct.php?errorName=$errorName&errorFile1=$errorFile1&errorFile2=$errorfile2");
 }
