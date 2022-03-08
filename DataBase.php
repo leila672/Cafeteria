@@ -163,4 +163,80 @@ class DataBase
             return false;
         }
     }
+
+    public function showusers()
+    {
+
+        try {
+
+            $limit = 2;
+
+            // update the active page number
+
+            if (isset($_GET["page"])) {
+
+                $page_number  = $_GET["page"];
+            } else {
+
+                $page_number = 1;
+            }
+
+            // get the initial page number
+
+            $initial_page = ($page_number - 1) * $limit;
+
+            // get data of selected rows per page 
+
+            $query1 = "SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id  GROUP BY name  LIMIT $initial_page, $limit";
+            $stmt = $this->db->prepare($query1);
+            $stmt->execute();
+            $orders = $stmt->fetchAll();
+
+            return $orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function showuserswithdate($from, $to)
+    {
+
+        try {
+            $query = "SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id and date between '$from' and '$to'  GROUP BY name";
+
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            return $user_orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+
+    public function paginate()
+    {
+        $query2 = "SELECT COUNT( distinct user_id) FROM orders";
+        $stmt2 = $this->db->prepare($query2);
+        $stmt2->execute();
+        $paginator = $stmt2->fetchAll();
+
+        return $paginator;
+    }
+
+    public function userorders($uid)
+    {
+
+        try {
+            $query = 'SELECT * FROM orders where  orders.user_id = ' . $uid . ' ORDER BY date DESC';
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            return $user_orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

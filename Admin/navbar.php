@@ -13,7 +13,7 @@ require_once("sessionValidtion.php");
                     <li class="nav-item"><a href="#" class="nav-link">products</a></li>
                     <li class="nav-item"><a href="allUsers.php" class="nav-link">Users</a></li>
                     <li class="nav-item"><a href="manual_orders.php" class="nav-link">Manual order</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">checks</a></li>
+                    <li class="nav-item"><a href="checks.php" class="nav-link">checks</a></li>
                     <li class="nav-item"><a href="logout.php" class="nav-link">Logout</a></li>
 
                 </ul>
