@@ -9,6 +9,8 @@ class DataBase
     private $dsn;
     private $db;
 
+    use productsQueries;
+
     public function __construct()
     {
         $this->serverName  = "localhost";
@@ -27,30 +29,6 @@ class DataBase
         } catch (PDOException $err) {
             die($err->getMessage());
         }
-    }
-
-    public function insert_Product($usrname, $password, $email, $picture)
-    {
-        $insertQuery = "Insert INTO products (name, price, category, picture) Values(?, ?, ?, ?)";
-        return $this->db->prepare($insertQuery)->execute([$usrname, $password, $email, $picture]);
-    }
-
-    public function insert_Category($category)
-    {
-        $insertQuery = "Insert INTO category (category) Values(?)";
-        return $this->db->prepare($insertQuery)->execute([$category]);
-    }
-
-    public function update_Table($id, $name, $price, $category, $picture)
-    {
-        $update = "update products set name = ?, price = ?, category = ?, picture = ? where id = ?";
-        return $this->db->prepare($update)->execute([$name, $price, $category, $picture, $id]);
-    }
-
-    public function update_Category($newValue, $oldValue)
-    {
-        $updateQuery = "update category set category = ? where category = ?";
-        return $this->db->prepare($updateQuery)->execute([$newValue, $oldValue]);
     }
 
     public function insert_into($table_name, ...$args)
@@ -254,5 +232,32 @@ class DataBase
         } catch (PDOException $e) {
             return false;
         }
+    }
+}
+
+trait productsQueries
+{
+    public function insert_Product($usrname, $password, $email, $picture)
+    {
+        $insertQuery = "Insert INTO products (name, price, category, picture) Values(?, ?, ?, ?)";
+        return $this->db->prepare($insertQuery)->execute([$usrname, $password, $email, $picture]);
+    }
+
+    public function insert_Category($category)
+    {
+        $insertQuery = "Insert INTO category (category) Values(?)";
+        return $this->db->prepare($insertQuery)->execute([$category]);
+    }
+
+    public function update_Table($id, $name, $price, $category, $picture)
+    {
+        $update = "update products set name = ?, price = ?, category = ?, picture = ? where id = ?";
+        return $this->db->prepare($update)->execute([$name, $price, $category, $picture, $id]);
+    }
+
+    public function update_Category($newValue, $oldValue)
+    {
+        $updateQuery = "update category set category = ? where category = ?";
+        return $this->db->prepare($updateQuery)->execute([$newValue, $oldValue]);
     }
 }
