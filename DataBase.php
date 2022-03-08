@@ -13,8 +13,8 @@ class DataBase
     {
         $this->serverName  = "localhost";
         $this->userName = "root";
-        $this->userPass  = "";
-        $this->dbName = "cafetria";
+        $this->userPass  = "12345";
+        $this->dbName = "cafeteria";
         $this->charSet = "utf8mb4";
 
         $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
@@ -29,6 +29,29 @@ class DataBase
         }
     }
 
+    public function insert_Product($usrname, $password, $email, $picture)
+    {
+        $insertQuery = "Insert INTO products (name, price, category, picture) Values(?, ?, ?, ?)";
+        return $this->db->prepare($insertQuery)->execute([$usrname, $password, $email, $picture]);
+    }
+
+    public function insert_Category($category)
+    {
+        $insertQuery = "Insert INTO category (category) Values(?)";
+        return $this->db->prepare($insertQuery)->execute([$category]);
+    }
+
+    public function update_Table($id, $name, $price, $category, $picture)
+    {
+        $update = "update products set name = ?, price = ?, category = ?, picture = ? where id = ?";
+        return $this->db->prepare($update)->execute([$name, $price, $category, $picture, $id]);
+    }
+
+    public function update_Category($newValue, $oldValue)
+    {
+        $updateQuery = "update category set category = ? where category = ?";
+        return $this->db->prepare($updateQuery)->execute([$newValue, $oldValue]);
+    }
 
     public function insert_into($table_name, ...$args)
     {
@@ -38,7 +61,7 @@ class DataBase
                 $query .= ' ( `name`, `email`, `password`, `roomNum`, `ext`, `profile_Picture`, `role`)  VALUES(?,?,?,?,?,?,?)';
                 break;
             case 'products':
-                $query .= ' ( `name`,``price, `category`, `picture`) VALUES(?,?,?,?)';
+                $query .= ' (`name`,``price, `category`, `picture`) VALUES(?,?,?,?)';
                 break;
             case 'orders':
                 $query .= ' (`date`,`status`, `totalPrice`, `user_id`) VALUES(?,?,?,?)';
@@ -88,7 +111,7 @@ class DataBase
     }
     public function select_All($table_name)
     {
-        $query = "SELECT * FROM $table_name ";
+        $query = "SELECT * FROM $table_name";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll();
