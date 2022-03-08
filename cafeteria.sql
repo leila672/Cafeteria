@@ -58,10 +58,22 @@ CREATE TABLE `products` (
   `name` varchar(100) NOT NULL,
   `price` float NOT NULL,
   `category` varchar(100) NOT NULL,
-  `picture` varchar(100) NOT NULL
+  `picture` varchar(100) DEFAULT 'noImage',
+  `status` varchar(100) DEFAULT 'show'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `category` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
 
 --
 -- Table structure for table `users`
@@ -90,14 +102,22 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `roomNum`, `ext`, `profi
 -- Dumping data for table `products`
 --
 
+INSERT INTO `products` (`id`, `name`, `price`, `category`, `picture`, `status`) VALUES
+(1, 'pepsi', '5', 'Beverages', 'pepsi', 'show'),
+(2, 'dew', '5', 'Beverages', 'dew', 'show'),
+(3, 'tea', '5', 'Hot Drinks', 'tea', 'show'),
+(4, 'coffee', '8', 'Hot Drinks', 'coffee', 'show'),
+(5, 'red wine', '30', 'Alcohol', 'redWine', 'show'),
+(6, 'white wine', '30', 'Alcohol', 'whiteWine', 'show');
 
-INSERT INTO `products` (`id`, `name`, `price`, `category`, `picture`) VALUES
-(1, 'pepsi', '5', 'Beverages', 'pepsi'),
-(2, 'dew', '5', 'Beverages', 'dew'),
-(3, 'tea', '5', 'Hot Drinks', 'tea'),
-(4, 'coffee', '8', 'Hot Drinks', 'coffee'),
-(5, 'red wine', '30', 'Alcohol', 'redWine'),
-(6, 'white wine', '30', 'Alcohol', 'whiteWine');
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category`) VALUES
+('Hot Drinks'),
+('Cold Drinks'),
+('Alchol');
 
 --
 -- Indexes for dumped tables
