@@ -4,6 +4,7 @@ include("errorPHPChecker.php");
 $errorName = !empty($_GET['errorName']) ? $_GET['errorName'] : "";
 $errorFile1 = !empty($_GET['errorFile1']) ? $_GET['errorFile1'] : "";
 $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,7 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafeteria</title>
+    <title>Add Product</title>
 
     <!-- Title Icon -->
     <link rel="shortcut icon" href="/Admin/images/favicon.png" />
@@ -27,7 +28,7 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
 </head>
 
 <body>
-    <?php   require_once("navbar.php"); ?>
+    <?php require_once("navbar.php"); ?>
 
     <section class="container">
         <div class="d-flex justify-content-between align-items-center pt-3" style="margin-top: 7rem;">
@@ -51,16 +52,25 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
                 <hr>
                 <div class="row-md-3">
                     <label class="form-label" style="margin-right: 2rem; margin-left:1rem;">Category</label>
-
                     <select name="category" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
-                        <option value="Hot Drinks">Hot Drinks</option>
-                        <option value="Beverages">Beverages</option>
-                        <option value="Alcohol">Alcohol</option>
-                    </select>
+                        <?php
 
+                        include_once("../DataBase.php");
+                        $tableNameProducts = "category";
+                        $dp = new DataBase();
+                        $dp->connect();
+                        $categoryRows = $dp->select_All($tableNameProducts);
+
+                        foreach ($categoryRows as $category) {
+                        ?>
+                            <option value="<?php echo $category['category'] ?>"><?php echo $category['category'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
                     <span>
-                        <a href="" style="text-decoration: underline; margin-left: 2rem">Add Category</a>
+                        <a href="addCategory.php" style="text-decoration: underline; margin-left: 2rem">Add Category</a>
                     </span>
                 </div>
 
