@@ -13,7 +13,7 @@ class DataBase
     {
         $this->serverName  = "localhost";
         $this->userName = "root";
-        $this->userPass  = "12345";
+        $this->userPass  = "";
         $this->dbName = "cafeteria";
         $this->charSet = "utf8mb4";
 
@@ -203,6 +203,22 @@ class DataBase
 
         try {
             $query = "SELECT users.id ,name , SUM(totalPrice)  as totalPrice FROM users JOIN orders ON users.id = orders.user_id and date between '$from' and '$to'  GROUP BY name";
+
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            return $user_orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function showuserswithname($userid)
+    {
+
+        try {
+            $query = "SELECT users.id ,name , SUM(totalPrice) as totalPrice FROM users JOIN orders ON users.id = orders.user_id AND users.id = $userid GROUP BY name";
 
 
             $stmt = $this->db->prepare($query);

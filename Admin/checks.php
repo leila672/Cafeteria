@@ -73,6 +73,18 @@
             color: #392613;
 
         }
+
+        .selectuser.active {
+
+            background-color: #e6ccb3;
+            color: black;
+
+        }
+
+
+ .selectuser :hover{ 
+    background: #000 !important;
+} 
     </style>
 
 </head>
@@ -89,7 +101,8 @@
         <h1> checks </h1>
         <hr />
 
-        <?php require_once("filters.php");
+        <?php require_once("filterswithdate.php");
+        require_once("filterwithuser.php");
         ?>
 
         <br> <br>
@@ -120,15 +133,16 @@
                                 $users = $db->showuserswithdate($from, $to);
 
                                 require_once('checks_templete.php');
-                               
-                            
+                            } elseif (isset($_POST['submit2'])) {
+                                if (!empty($_POST['userselected'])) {
+                                    $selected = $_POST['userselected'];
+                                    $users = $db->showuserswithname($selected);
+                                    require_once('checks_templete.php');
+                                }
                             } else {
                                 $users = $db->showusers();
                                 require_once('checks_templete.php');
-                               
                             }
-
-                           
                         } catch (PDOException $e) {
                             echo 'Connection failed: ' . $e->getMessage();
                         }
@@ -138,10 +152,10 @@
 
                 </table>
                 <?php
-               
-               if (!(isset($_POST['submit']))) {
-               require_once('paganitor.php');
-               }
+
+                if (!((isset($_POST['submit'])) || (isset($_POST['submit2'])))) {
+                    require_once('paganitor.php');
+                }
                 ?>
                 <br> <br> <br> <br> <br> <br>
 

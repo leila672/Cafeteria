@@ -15,7 +15,7 @@
                     <input type="date" name="to">
                 </td>
                 <td>
-                    <input type="submit" name="submit">
+                    <input type="submit" name="submit" value="search"> 
                 </td>
             </tr>
         </table>
