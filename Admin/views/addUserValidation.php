@@ -38,6 +38,9 @@ if (!filter_var($_REQUEST["email"], FILTER_VALIDATE_EMAIL)) {
     $errors["wrongformat"]="invalid";
 }
 // image validation
+if (!file_exists($_FILES['img']['tmp_name']) || !is_uploaded_file($_FILES['img']['tmp_name'])) {
+    $errors["emptyimg"] = "Profile_is_empty";
+}
 $file_name = $_FILES['img']['name'];
 $file_tmp =$_FILES['img']['tmp_name'];
 $ext= pathinfo($file_name,PATHINFO_EXTENSION);
@@ -48,7 +51,7 @@ if (in_array($ext, $extensions)){
     move_uploaded_file($file_tmp,"../images/user_image/".$file_name);
 }
 else{
-    $errors['img']="imgerorr";
+    $errors['extimg']="imgerorr";
 }
 
 //connection to database 
