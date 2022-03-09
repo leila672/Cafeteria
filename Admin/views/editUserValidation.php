@@ -60,7 +60,7 @@ if(isset($_FILES['img'])){
         $email = strtolower(trim(filter_var($_REQUEST["email"], FILTER_VALIDATE_EMAIL)));
         $password = trim(htmlspecialchars($_REQUEST['password']));
         $image = strtolower(trim(htmlspecialchars($image)));
-         require_once("../../database.php");
+         require_once("../../Database.php");
         $mydb = new DataBase();
         try {
             $mydb->connect();

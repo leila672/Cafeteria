@@ -57,7 +57,7 @@
                 <tbody>
                   <?php
 
-                   require_once("../../DataBase.php");
+                   require_once("../../Database.php");
                   $db = new DataBase();
                   try {
                     $db->connect();

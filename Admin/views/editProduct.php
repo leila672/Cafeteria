@@ -6,7 +6,7 @@ $errorFile1 = !empty($_GET['errorFile1']) ? $_GET['errorFile1'] : "";
 $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
 
 
-include_once("../../database.php");
+include_once("../../Database.php");
 
 // waiting product id from tableProducts page
 $id = $_REQUEST['id'];;
@@ -67,7 +67,7 @@ $productInfo = $dp->select_row($tableNameProducts, $id);
                         <option selected disabled value="">Choose...</option>
                         <?php
 
-                        include_once("../../database.php");
+                        include_once("../../Database.php");
                         $tableNameProducts = "category";
                         $dp = new DataBase();
                         $dp->connect();

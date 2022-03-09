@@ -43,7 +43,7 @@ include("errorPHPChecker.php");
                     </thead>
                     <tbody>
                         <?php
-                        include_once("../../database.php");
+                        include_once("../../Database.php");
                         $tableNameProducts = "products";
                         $dp = new DataBase();
                         $dp->connect();

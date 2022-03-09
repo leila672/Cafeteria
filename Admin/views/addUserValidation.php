@@ -76,7 +76,7 @@ $room=trim(htmlspecialchars($_POST['room']));
 $ext =trim(htmlspecialchars($_POST['ext']));
 $image =strtolower(trim(htmlspecialchars($image)));
 $exist= false;
-     require_once("../../DataBase.php");
+     require_once("../../Database.php");
     $mydb = new DataBase();
     try {
         $mydb ->connect();
