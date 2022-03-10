@@ -56,7 +56,7 @@ $errorFile2 = !empty($_GET['errorFile2']) ? $_GET['errorFile2'] : "";
                         <option selected disabled value="">Choose...</option>
                         <?php
 
-                        include_once("../../DataBase.php");
+                        include_once("../../Database.php");
                         $tableNameProducts = "category";
                         $dp = new DataBase();
                         $dp->connect();

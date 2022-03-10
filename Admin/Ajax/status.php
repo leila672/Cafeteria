@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../DataBase.php");
+require_once("../../Database.php");
 
 
 if(isset($_POST["ajax_type"])){

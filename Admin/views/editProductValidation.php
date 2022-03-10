@@ -42,7 +42,7 @@ if (
 
 
 // Database validator
-include_once("../../database.php");
+include_once("../../Database.php");
 
 $tableNameProducts = "products";
 
