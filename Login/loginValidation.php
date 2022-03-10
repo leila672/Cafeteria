@@ -1,5 +1,5 @@
 <?php
- require_once("../../Database.php");
+ require_once("../Database.php");
 $mydb = new DataBase();
 try {
     $mydb->connect();
@@ -10,10 +10,19 @@ try {
                 session_start();
                 $_SESSION['name']=$user['name'];
                 $_SESSION['profile_Picture']=$user['profile_Picture'];
-                header("location:home.php");
+
+                if($user['role'] == 'admin'){
+                    header("location:../Admin/views/home.php");
+                }
+                else if($user['role'] == 'user'){
+                    header("location:../User/home.php");
+                }
+                else{
+                    header("location:index.html");
+                }
             }
             else{
-                header("location:login.php");
+                header("location:home.php");
             }
         }}
 

@@ -29,8 +29,7 @@
           <div class="col-md-8 col-sm-12 text-center ftco-animate">
             <span class="subheading">Welcome</span>
             <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-              necessary regelialia.</p>
+            
           </div>
 
         </div>
@@ -45,8 +44,7 @@
           <div class="col-md-8 col-sm-12 text-center ftco-animate">
             <span class="subheading">Welcome</span>
             <h1 class="mb-4">Amazing Taste &amp; Beautiful place</h1>
-            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-              necessary regelialia.</p>
+            
           </div>
 
         </div>
@@ -61,8 +59,7 @@
           <div class="col-md-8 col-sm-12 text-center ftco-animate">
             <span class="subheading">Welcome</span>
             <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the
-              necessary regelialia.</p>
+            
           </div>
 
         </div>
