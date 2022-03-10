@@ -22,7 +22,7 @@ try {
                 }
             }
             else{
-                header("location:home.php");
+                header("location:index.html");
             }
         }}
 
