@@ -38,7 +38,7 @@
   <section class="container user-home">
     <div class="d-flex justify-content-between align-items-center pt-3" >
     <h2><a href=""> Users</a> </h2>
-    <h2><a href="addUser.php">Add User</a></h2>
+    <h2 style="text-decoration: underline;"><a href="addUser.php">Add User</a></h2>
     </div>
     <hr />
    

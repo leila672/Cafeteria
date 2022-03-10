@@ -108,14 +108,14 @@
                     <div class="col-md-6">
                         <label for="validationCustom03" class="form-label">Image</label>
                         <input type="file" name="img" class=" form-label  " id="validationCustom03">
-                        <div class="invalid-feedback">
+                       
                             <label style="color: red">
                                 <?php if (isset($_GET["emptyimg"])) {
                                     echo "<br>Image Require<br>";}
                                     if (isset($_GET["extimg"])) {
                                         echo "extension doesnt match <br>";
                                 } ?></label>
-                        </div>
+
                     </div>
 
                     <div class="col-12 pt-5">

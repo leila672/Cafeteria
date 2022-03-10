@@ -8,7 +8,7 @@ $userRoom = '';
 $userPP = '';
 $role = '';
 $ext = '';
- require_once("../../database.php");
+ require_once("../../Database.php");
 $mydb = new DataBase();
 try {
     $mydb->connect();
@@ -85,7 +85,7 @@ try {
                     <div class="col-md-4">
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" value="<?php echo $UserPass; ?>">
-                        <label style="color: red"> <?php if (isset($_GET["emptypass"])) {
+                        <label style="color: red"> <?php if (isset($_GET["emptypassword"])) {
                                                         echo "Password is reqire ";
                                                     }
                                                     if (isset($_GET['invalidpassword'])) {
