@@ -41,6 +41,13 @@ include("errorPHPChecker.php");
 <body>
     <?php require_once("navbar.php"); ?>
 
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+        </svg>
+    </div>
+
     <section class="container" style="margin: 10rem auto;">
     <div class="d-flex justify-content-between align-items-center pt-3" >  <h2><a href=""> Products </a> </h2>
           <a class="h3" id="add" href="addProduct.php">Add Product</a>
@@ -120,6 +127,21 @@ include("errorPHPChecker.php");
                 </script>
 
 
+                <script src="../js/template/jquery.min.js"></script>
+                <script src="../js/template/jquery-migrate-3.0.1.min.js"></script>
+                <script src="../js/template/popper.min.js"></script>
+                <script src="../js/template/bootstrap.min.js"></script>
+                <script src="../js/template/jquery.easing.1.3.js"></script>
+                <script src="../js/template/jquery.waypoints.min.js"></script>
+                <script src="../js/template/jquery.stellar.min.js"></script>
+                <script src="../js/template/owl.carousel.min.js"></script>
+                <script src="../js/template/jquery.magnific-popup.min.js"></script>
+                <script src="../js/template/aos.js"></script>
+                <script src="../js/template/jquery.animateNumber.min.js"></script>
+                <script src="../js/template/bootstrap-datepicker.js"></script>
+                <script src="../js/template/jquery.timepicker.min.js"></script>
+                <script src="../js/template/scrollax.min.js"></script>
+                <script src="../js/template/main.js"></script>
     </section>
 </body>
 
