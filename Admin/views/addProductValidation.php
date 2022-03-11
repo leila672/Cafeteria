@@ -27,12 +27,11 @@ $file_tmp = $_FILES['productImage']['tmp_name'];
 $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
 
 if (
-    $imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpg"
+    $imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg"
     || $imageFileType == "gif"
 ) {
     move_uploaded_file($file_tmp, "../images/product_image/" . $fileName);
 } else {
-    echo "55";
     $flagImage1 = 1;
     $errorFile1 = "Images only are allowed to be uploaded";
 }
@@ -53,7 +52,6 @@ $arrAllRows = $dp->select_All($tableNameProducts);
 
 for ($i = 0; $i < count($arrAllRows); $i++) {
     if (strtolower($arrAllRows[$i][1]) == strtolower($productName)) {
-        echo "1";
         $flagName = 1;
         $errorName = "Product already exists add another one";
     }
@@ -64,15 +62,12 @@ for ($i = 0; $i < count($arrAllRows); $i++) {
 }
 
 if (!$flagName && !$flagImage1 && !$flagImage2) {
-    echo "1";
     try {
         $dp->insert_Product($_POST['product'], $_POST['price'], $_POST['category'], $imageNameNoExt[0]);
     } catch (PDOException $err) {
-        echo "error";
         die($err->getMessage());
     }
-}
-// header("Location:tablePage.php");
-else {
+    header("Location:tablePage.php");
+} else {
     header("Location:addProduct.php?errorName=$errorName&errorFile1=$errorFile1&errorFile2=$errorfile2");
 }
