@@ -15,8 +15,8 @@ class DataBase
     {
         $this->serverName  = "localhost";
         $this->userName = "root";
-        $this->userPass  = "";
-        $this->dbName = "cafetria";
+        $this->userPass  = "12345";
+        $this->dbName = "cafeteria";
         $this->charSet = "utf8mb4";
 
         $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
@@ -259,5 +259,11 @@ trait productsQueries
     {
         $updateQuery = "update category set category = ? where category = ?";
         return $this->db->prepare($updateQuery)->execute([$newValue, $oldValue]);
+    }
+
+    public function update_Product_status($id, $checked)
+    {
+        $updateQuery = "update products set status = ? where id = ?";
+        return $this->db->prepare($updateQuery)->execute([$checked, $id]);
     }
 }
