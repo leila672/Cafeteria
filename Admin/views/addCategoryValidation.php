@@ -18,7 +18,7 @@ foreach ($categoryRows as $cat) {
 }
 
 if ($flagExist) {
-    $duplicateCategory = "This Category already exists";
+    $duplicateCategory = "This Category is already exists";
     header("Location:addCategory.php?errorCategory=$duplicateCategory");
 } else {
     $dp->insert_Category($newCategory);
