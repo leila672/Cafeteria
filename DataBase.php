@@ -15,7 +15,7 @@ class DataBase
     {
         $this->serverName  = "localhost";
         $this->userName = "root";
-        $this->userPass  = "12345";
+        $this->userPass  = "";
         $this->dbName = "cafeteria";
         $this->charSet = "utf8mb4";
 
