@@ -20,11 +20,12 @@ include("errorPHPChecker.php");
     <style>
         input[type=checkbox] {
             transform: scale(2);
-            background-color: crimson;
+            background-color:  #c68c53;
         }
 
         #add {
             text-decoration: underline;
+            color:  #cc9966;
         }
     </style>
 
@@ -41,7 +42,10 @@ include("errorPHPChecker.php");
     <?php require_once("navbar.php"); ?>
 
     <section class="container" style="margin: 10rem auto;">
-        <a class="text-danger h3" id="add" href="addProduct.php">Add Product</a>
+    <div class="d-flex justify-content-between align-items-center pt-3" >  <h2><a href=""> Products </a> </h2>
+          <a class="h3" id="add" href="addProduct.php">Add Product</a>
+    </div>
+    
         <div class="container border mt-1">
             <div class="row">
                 <table class="table">
