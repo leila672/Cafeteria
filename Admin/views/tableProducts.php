@@ -14,6 +14,20 @@ include("errorPHPChecker.php");
     <!-- Title Icon -->
     <link rel="shortcut icon" href="/Admin/images/favicon.png" />
 
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        input[type=checkbox] {
+            transform: scale(2);
+            background-color: crimson;
+        }
+
+        #add {
+            text-decoration: underline;
+        }
+    </style>
+
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <link rel="stylesheet" href="../css/animate.css">
@@ -27,7 +41,8 @@ include("errorPHPChecker.php");
     <?php require_once("navbar.php"); ?>
 
     <section class="container" style="margin: 10rem auto;">
-        <div class="container border">
+        <a class="text-danger h3" id="add" href="addProduct.php">Add Product</a>
+        <div class="container border mt-1">
             <div class="row">
                 <table class="table">
                     <thead class="thead-primary">
@@ -37,7 +52,7 @@ include("errorPHPChecker.php");
                             <th>Price</th>
                             <th>Category</th>
                             <th>Picture</th>
-                            <th>Status</th>
+                            <th>Availability</th>
                             <th>Edit - Delete</th>
                         </tr>
                     </thead>
@@ -50,14 +65,18 @@ include("errorPHPChecker.php");
                         $productsRows = $dp->select_All($tableNameProducts);
                         foreach ($productsRows as $product) {
                         ?>
-                            <tr style="font-weight:1000;">
+                            <tr class="text-light" style="font-weight:1000;">
                                 <td><?php echo $product["id"] ?></td>
                                 <td><?php echo $product["name"] ?></td>
                                 <td><?php echo $product["price"] ?></td>
                                 <td><?php echo $product["category"] ?></td>
                                 <td> <img src="<?php echo "../images/product_image/" . $product["picture"] ?>" class="col-xs-3" width="150px" height="150px"></td>
-                                <td><?php echo $product["status"] ?></td>
-                                <td>
+                                <?php $check =  "";
+                                if ($product["status"] == 1) {
+                                    $check =  "checked";
+                                } ?>
+                                <td><input class="form-check-input" type="checkbox" value="<?php echo $product["id"] ?>" id="box" <?php echo $check ?>></td>
+                                <td style="padding-bottom: 0.2rem;">
                                     <h5><a href='editProduct.php?id=<?= $product['id'] ?>'>Edit </a> - <a href='deleteProduct.php?id=<?= $product['id'] ?>'>Delete</a></h5>
                                 </td>
                             </tr>
@@ -69,6 +88,34 @@ include("errorPHPChecker.php");
 
                 <!-- JavaScript Bundle with Popper -->
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+                <script>
+                    $(document).ready(function() {
+                        $('input[type="checkbox"]').click(function() {
+                            isChecked = $(this).is(':checked');
+                            if (isChecked) {
+                                checked = 1
+                            } else {
+                                checked = 0
+                            }
+                            id = $(this).val();
+                            $.ajax({
+                                url: "updateProductStatus.php",
+                                method: "POST",
+                                data: {
+                                    id,
+                                    checked,
+                                },
+                                success: function(data) {},
+                            });
+
+                        });
+                    });
+                </script>
+
+
     </section>
 </body>
 
