@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>User Home Page</title>
+    <title>Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -58,7 +58,7 @@
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading" style="color: white;">Welcome</span>
               <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-              <p><a href="cart.html" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> </p>
+              <p><a href="user.php" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> </p>
             </div>
 
           </div>
@@ -73,7 +73,7 @@
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading"style="color: white;">Welcome</span>
               <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-              <p><a href="cart.html" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> </p>
+              <p><a href="user.php" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> </p>
             </div>
 
           </div>
@@ -88,7 +88,7 @@
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading"style="color: white;">Welcome</span>
               <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-              <p><a href="cart.html" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> </p>
+              <p><a href="user.php" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> </p>
             </div>
 
           </div>
