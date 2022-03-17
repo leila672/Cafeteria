@@ -13,6 +13,7 @@ try {
                 session_start();
                 $_SESSION['name']=$user['name'];
                 $_SESSION['profile_Picture']=$user['profile_Picture'];
+                $_SESSION['id']=$user['id'];
 
                 if($user['role'] == 'admin'){
                     header("location:../Admin/views/home.php");

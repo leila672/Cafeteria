@@ -191,6 +191,21 @@ class DataBase
             return false;
         }
     }
+    public function showuorderswithdate($from, $to)
+    {
+
+        try {
+            $query = "SELECT * FROM users JOIN orders ON users.id = orders.user_id and date between '$from' and '$to'  GROUP BY name";
+
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            return $user_orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 
     public function showuserswithname($userid)
     {
