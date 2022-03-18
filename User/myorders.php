@@ -9,10 +9,20 @@ require_once ("../DataBase.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-    <link rel="stylesheet" href="../Admin/css/animate.css">
-    <link rel="stylesheet" href="../Admin/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../Admin/css/icomoon.css">
-    <link rel="stylesheet" href="../Admin/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
     <style>
         table{
             font-size: larger;
@@ -23,21 +33,76 @@ require_once ("../DataBase.php");
 <body>
     <?php
     //======================================NavBar==================================
-    require_once("navbar.php");
+    //require_once("navbar.php");
     //=======================================End NavBar=============================
     ?>
+    <!-- nav -->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="home.php" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="myorders.php" class="nav-link">My Orders</a></li>
+                    <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+
 
     <section class="container user-home">
         <div class="d-flex justify-content-between align-items-center pt-3" >
-            <h2><a href=""> My Orders</a> </h2>
+            <h2><a href="myorders.php"> My Orders</a> </h2>
         </div>
         <hr />
         <div class="container">
             <div class="row">
                 <?
-                    require_once ("../Admin/views/filterswithdate.php")
+                    //require_once ("../Admin/views/filterswithdate.php")
                 ?>
-                <table class="table">
+                <!-- Filter With Date -->
+                <form class="mt-3"  method="post" action="">
+                    <!-- date -->
+                    <table class="col-8 d-flex" style="left: 20%;">
+                        <tr>
+                            <td>
+                                <h4 class="mt-2" style="display: inline-block;">From:</h4>
+                            </td>
+                            <td>
+                                <input class="m-4" type="date" name="from">
+                            </td>
+                            <td>
+                                <h4 class="mt-2" style="display: inline-block;">To:</h4>
+                            </td>
+                            <td>
+                                <input class="m-4" type="date" name="to">
+                            </td>
+                            <td>
+                                <input class="btn btn-warning" type="submit" name="submit" value="search">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <?php
+                $db = new DataBase();
+                try {
+                    $db->connect();
+                    if (isset($_POST['submit'])) {
+                        $from = $_POST['from'];
+                        $to = $_POST['to'];
+                        $users = $db->showuorderswithdate($from, $to);
+                    }
+                }catch (PDOException $e) {
+                    echo 'Connection failed: ' . $e->getMessage();
+                }
+
+                ?>
+                <!-- End Filter With Data -->
+                <table class="table mt-3">
                     <thead class="thead-primary">
                         <tr class="text-center">
                             <th>Order Details</th>
@@ -66,10 +131,17 @@ require_once ("../DataBase.php");
                             <td class="text-primary"><?php echo $order['id']?></td>
                             <td class="text-primary"><?php echo $order["date"]?></td>
                             <td class="text-primary"><?php echo $order["status"]?></td>
-                            <td class="text-primary"><?php echo $order["price"]?></td>
-                            <?php if ($order["status"] == "processing"){?>
+                            <td class="text-primary"><?php echo $order["totalPrice"]?></td>
+                            <?php
+
+                            //================================Debugger===================================
+                            ini_set('display_errors', 1);
+                            ini_set('display_startup_errors', 1);
+                            error_reporting(E_ALL);
+                            //===========================================================================
+                            if ($order["status"] == "processing"){?>
                                 <td align="center">
-                                    <a class="trash btn btn btn-warning"" href="#" id=<?php echo $order["id"]; ?>>Cancel</a>
+                                    <a class="btn btn btn-warning" name="status" onclick="changestatus(<?=$order['id']?>)"  href="#" id=<?php echo $order["id"]; ?>>Cancel</a>
                                 </td>
                             <?php } ?>
                         </tr>
@@ -115,19 +187,41 @@ require_once ("../DataBase.php");
         </div>
     </section>
 
-    <script src="../Admin/js/template/jquery.min.js"></script>
-    <script src="../Admin/js/template/jquery-migrate-3.0.1.min.js"></script>
-    <script src="../Admin/js/template/popper.min.js"></script>
-    <script src="../Admin/js/template/bootstrap.min.js"></script>
-    <script src="../Admin/js/template/jquery.easing.1.3.js"></script>
-    <script src="../Admin/js/template/jquery.waypoints.min.js"></script>
-    <script src="../Admin/js/template/jquery.stellar.min.js"></script>
-    <script src="../Admin/js/template/owl.carousel.min.js"></script>
-    <script src="../Admin/js/template/jquery.magnific-popup.min.js"></script>
-    <script src="../Admin/js/template/aos.js"></script>
-    <script src="../Admin/js/template/jquery.animateNumber.min.js"></script>
-    <script src="../Admin/js/template/bootstrap-datepicker.js"></script>
-    <script src="../Admin/js/template/jquery.timepicker.min.js"></script>
-    <script src="../Admin/js/template/scrollax.min.js"></script>
-    <script src="../Admin/js/template/main.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/range.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        function changestatus(id){
+            $.ajax({
+                type: "POST",
+                url: "status.php",
+                data: {
+                    id:id
+                    ajax_type: "status",
+                },
+                success: function(data) {
+                    alert("order status has been changed ");
+                }
+            });
+        }
+    </script>
 </body>
