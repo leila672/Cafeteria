@@ -33,26 +33,9 @@ require_once ("../DataBase.php");
 <body>
     <?php
     //======================================NavBar==================================
-    //require_once("navbar.php");
+    require_once("navbar.php");
     //=======================================End NavBar=============================
     ?>
-    <!-- nav -->
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="home.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="myorders.php" class="nav-link">My Orders</a></li>
-                    <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- END nav -->
-
 
     <section class="container user-home">
         <div class="d-flex justify-content-between align-items-center pt-3" >
@@ -141,7 +124,7 @@ require_once ("../DataBase.php");
                             //===========================================================================
                             if ($order["status"] == "processing"){?>
                                 <td align="center">
-                                    <a class="btn btn btn-warning" name="status" onclick="changestatus(<?=$order['id']?>)"  href="#" id=<?php echo $order["id"]; ?>>Cancel</a>
+                                    <button class="trash btn btn btn-warning" name="status" data-value="<?=$order['id']?>"  id=<?php echo $order["id"]; ?>>Cancel</button>
                                 </td>
                             <?php } ?>
                         </tr>
@@ -164,7 +147,6 @@ require_once ("../DataBase.php");
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <?php
                                             }
                                             ?>
@@ -205,23 +187,13 @@ require_once ("../DataBase.php");
     <script src="js/scrollax.min.js"></script>
     <script src="js/range.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script>
-    <script src="js/main.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-        function changestatus(id){
-            $.ajax({
-                type: "POST",
-                url: "status.php",
-                data: {
-                    id:id
-                    ajax_type: "status",
-                },
-                success: function(data) {
-                    alert("order status has been changed ");
-                }
-            });
-        }
+        let thebtn = document.getElementsByClassName('trash')[0]
+        let theid = thebtn.dataset.value
+        thebtn.addEventListener("click", function (){
+            let linkk= `./status.php?id=${theid}`;
+            location.assign(linkk)
+        })
     </script>
 </body>

@@ -155,6 +155,17 @@ class DataBase
             return false;
         }
     }
+    public function cancelOrder($id){
+        try {
+            $sql = "DELETE FROM orders WHERE id = $id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return true;
+        }catch (PDOException $e){
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
     public function showusers()
     {
 
