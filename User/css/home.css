@@ -22,7 +22,7 @@
   margin: 10px auto;
   color: white;
   box-shadow: black 1px 2px 3px;
-  color: rgb(255, 121, 32);
+  color: #c68c53;
 }
 .nav-bar {
   display: flex;
@@ -57,7 +57,7 @@
 }
 
 .nav-bar ul li a:hover {
-  color: rgb(255, 121, 32);
+  color: #c68c53;
 }
 
 .text {
@@ -68,7 +68,7 @@
   padding: 5px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 40px;
-  color: rgb(255, 121, 32);
+  color: #c68c53;
   font-weight: lighter;
   letter-spacing: 8px;
 }
@@ -108,12 +108,6 @@
   padding: 50px;
 }
 
-.product-image img {
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
-
 .product-image img:hover {
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -125,6 +119,8 @@
   margin-bottom: 20px;
   margin-top: 20px;
 }
+
+
 
 .product-image img {
   -webkit-transition: 0.3s;
@@ -144,11 +140,12 @@ p.product-price {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 15px;
+  color: white;
 }
 
 .single-product-item {
   -webkit-box-shadow: 0 0 20px #e4e4e4;
-  box-shadow: 0 0 20px #e4e4e4;
+  box-shadow: 0 0 2px gray;
   padding-bottom: 50px;
   border-radius: 5px;
 }
@@ -178,7 +175,7 @@ a {
 button.cart-btn {
   font-family: "Poppins", sans-serif;
   display: inline-block;
-  background-color: #f28123;
+  background-color: #c68c53;
   color: #fff;
   padding: 10px 20px;
 }
@@ -195,7 +192,7 @@ button.cart-btn {
 
 button.cart-btn:hover {
   background-color: #051922;
-  color: #f28123;
+  color: #c68c53;
 }
 .a-price-symbol {
   top: -0.75em;
@@ -216,7 +213,7 @@ button.cart-btn:hover {
   position: relative;
 }
 .orange-text {
-  color: #F28123;
+  color: #c68c53;
 } 
 .section-title h3:after {
   position: absolute;
@@ -287,7 +284,7 @@ margin-bottom: 0;
 .cart-table-wrap tbody tr td {
 border: 1px solid #efefef;
 padding: 30px;
-color: #051922;
+color: white;
 }
 
 thead.cart-table-head tr {
@@ -320,6 +317,7 @@ padding: 15px;
 table.total-table tbody tr.total-data td {
 border: 1px solid #efefef;
 padding: 19px 15px;
+color: white;
 }
 
 tr.total-data td strong {
@@ -349,9 +347,10 @@ border-radius: 50px;
 a.boxed-btn {
 font-family: 'Poppins', sans-serif;
 display: inline-block;
-background-color: #F28123;
+background-color: #c68c53;
 color: #fff;
 padding: 10px 20px;
+text-decoration: none;
 
 }
 
