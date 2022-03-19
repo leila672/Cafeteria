@@ -81,7 +81,7 @@ include("errorPHPChecker.php");
                                 <td><?php echo $product["name"] ?></td>
                                 <td><?php echo $product["price"] ?></td>
                                 <td><?php echo $product["category"] ?></td>
-                                <td> <img src="<?php echo "../images/product_image/" . $product["picture"] ?>" class="col-xs-3" width="150px" height="150px"></td>
+                                <td> <img src="<?php echo "../images/product_image/".$product['picture'] ?>" class="col-xs-3" width="150px" height="150px"></td>
                                 <?php $check =  "";
                                 if ($product["status"] == 1) {
                                     $check =  "checked";

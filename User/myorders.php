@@ -102,7 +102,7 @@ require_once ("../DataBase.php");
                             <td class="text-primary"><?php echo $order['id']?></td>
                             <td class="text-primary"><?php echo $order["date"]?></td>
                             <td class="text-primary"><?php echo $order["status"]?></td><?php
-                            if ($order["status"] == "processing"){?>
+                            if ($order["status"] == "Processing"){?>
                                 <td align="center">
                                     <button class="trash btn btn btn-warning" name="status" data-value="<?=$order['id']?>"  id=<?php echo $order["id"]; ?>>Cancel</button>
                                 </td>
