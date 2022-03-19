@@ -215,11 +215,11 @@ class DataBase
             return false;
         }
     }
-    public function showuorderswithdate($from, $to)
+    public function showuorderswithdate($uid,$from, $to)
     {
 
         try {
-            $query = "SELECT * FROM users JOIN orders ON users.id = orders.user_id and date between '$from' and '$to'  GROUP BY name";
+            $query = "SELECT * FROM  orders WHERE  orders.user_id =" . $uid . " AND date between '$from' and '$to'";
 
 
             $stmt = $this->db->prepare($query);
