@@ -67,7 +67,7 @@ if (!$flagName && !$flagImage1 && !$flagImage2) {
     } catch (PDOException $err) {
         die($err->getMessage());
     }
-    header("Location:tablePage.php");
+    header("Location:tableProducts.php");
 } else {
     header("Location:addProduct.php?errorName=$errorName&errorFile1=$errorFile1&errorFile2=$errorfile2");
 }
