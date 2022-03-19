@@ -149,6 +149,8 @@ select.addEventListener("change",()=>{
           </table>
           <div class="cart-buttons">
             <a id="total"  href="#" type="submit" class="boxed-btn black">Make Order</a>
+            <a  id="checkout"  href="#" type="submit" class="boxed-btn black mt-2">Check Out</a>
+
           </div>
         </div>
 
@@ -188,7 +190,7 @@ select.addEventListener("change",()=>{
 <script>
 
  setTimeout(addtocart,1000);
-  
+
 </script>
 
 

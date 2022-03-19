@@ -2,8 +2,6 @@ function addtocart(){
 
   const buttons = document.getElementsByClassName("cart-btn");
  
-  console.log(buttons);
-
   for (let index = 0; index < buttons.length; index++) {
     buttons[index].addEventListener("click", () => {
       buttons[index].setAttribute("disabled", "true");
@@ -45,12 +43,12 @@ function addtocart(){
       const inputs = document.querySelectorAll("input[type=number]");
       inputs.forEach((input) => {
         input.addEventListener("change", () => {
-          if (
-            input.parentElement.parentElement.children[2].innerText == nameOfProduct) {
-  
-               const totalPriceofProduct = Number(priceOfProduct) * input.value;
-  
-            input.parentElement.parentElement.children[5].innerText = totalPriceofProduct;
+          if (input.parentElement.parentElement.children[2].innerText == nameOfProduct) {
+
+              const totalPriceofProduct = Number(priceOfProduct) * input.value;
+
+               input.parentElement.parentElement.children[5].innerText = totalPriceofProduct;
+
   
           }
   
@@ -59,19 +57,66 @@ function addtocart(){
       });
   
   
-     const totalTable = document.getElementsByClassName("total-table"); 
+  /*    const totalTable = document.getElementsByClassName("total-table"); 
   
      const totalNumberinString = totalTable[0].children[1].children[0].children[1].innerText ;
   
-     totalTable[0].children[1].children[0].children[1].innerText = Number(totalNumberinString)+Number(td6.innerText); 
-  
+     totalTable[0].children[1].children[0].children[1].innerText = Number(totalNumberinString)+Number(td6.innerText);  */
+
+
     });
-  
-  
-    
+
   }
   
-  
+}
 
+function calcTotal(){
+
+  let cartTable = document.getElementsByClassName("cart-table");
+  let total = 0 ; 
+    for (let index = 0; index < cartTable[0].children[1].children.length; index++) {
+    
+      total+=Number(cartTable[0].children[1].children[index].children[5].innerText);
+
+    }
+
+    const totalTable = document.getElementsByClassName("total-table"); 
+ 
+    totalTable[0].children[1].children[0].children[1].innerText = total; 
+
+} 
+
+function checkOnCartrows (){
+
+      let btnCheckout = document.getElementById("checkout");
+ 
+       btnCheckout.addEventListener("click",(event)=>{
+         event.preventDefault();
+        let cartTable = document.getElementsByClassName("cart-table");
+
+          if(cartTable[0].children[1].children.length!==0){
+           
+            calcTotal();
+
+          }else{
+            alert("Please Add Elements to Cart to Checkout ")
+          }
+
+
+       });
+           
 
 }
+
+
+checkOnCartrows();
+
+
+
+
+
+
+
+
+
+
