@@ -55,7 +55,7 @@ require_once ("../DataBase.php");
                     //require_once ("../Admin/views/filterswithdate.php")
                 ?>
                 <!-- Filter With Date -->
-                <form class="mt-5"  method="post" action="">
+                <form class="mt-5"  method="Get" action="">
                     <!-- date -->
                     <table class="col-8 d-flex" style="left: 20%;">
                         <tr>
@@ -77,20 +77,6 @@ require_once ("../DataBase.php");
                         </tr>
                     </table>
                 </form>
-                <?php
-                $db = new DataBase();
-                try {
-                    $db->connect();
-                    if (isset($_POST['submit'])) {
-                        $from = $_POST['from'];
-                        $to = $_POST['to'];
-                        $users = $db->showuorderswithdate($from, $to);
-                    }
-                }catch (PDOException $e) {
-                    echo 'Connection failed: ' . $e->getMessage();
-                }
-
-                ?>
                 <!-- End Filter With Data -->
                 <table class="table mt-3">
                     <thead class="thead-primary">
@@ -109,8 +95,14 @@ require_once ("../DataBase.php");
                             $db = new DataBase();
                             try{
                                 $db->connect();
-                                $orders = $db->userorders($userID);
-                                foreach ($orders as $order) {
+                                if (isset($_GET['submit'])) {
+                                    $from = $_GET['from'];
+                                    $to = $_GET['to'];
+                                    $orders = $db->showuorderswithdate($userID,$from, $to);
+                                }else {
+                                    $orders = $db->userorders($userID);
+                                }
+                                    foreach ($orders as $order) {
                             ?>
                         <tr class="<?= $order['id'] ?>">
                             <td>
