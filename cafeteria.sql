@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2022 at 09:42 PM
+-- Generation Time: Mar 19, 2022 at 10:02 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -60,9 +60,10 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `date`, `status`, `totalPrice`, `user_id`) VALUES
 (1, '2022-03-19 20:36:35', 'done', 15, 2),
-(2, '2022-03-19 20:36:35', 'Processing', 40, 2),
+(2, '2022-03-17 20:36:35', 'Canceled', 40, 2),
 (3, '2022-03-19 20:36:35', 'done', 40, 1),
-(4, '2022-03-19 20:36:35', 'Processing', 70, 1);
+(4, '2022-03-19 20:36:35', 'Processing', 70, 1),
+(5, '2022-03-19 20:36:35', 'Processing', 30, 2);
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,8 @@ INSERT INTO `orders_products` (`order_id`, `product_id`, `quantity`) VALUES
 (2, 14, 1),
 (3, 12, 1),
 (3, 15, 1),
-(4, 13, 3);
+(4, 13, 3),
+(5, 9, 3);
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`

@@ -15,7 +15,7 @@ class DataBase
     {
         $this->serverName  = "localhost";
         $this->userName = "root";
-        $this->userPass  = "882008";
+        $this->userPass  = "";
         $this->dbName = "cafeteria";
         $this->charSet = "utf8mb4";
 
@@ -146,7 +146,7 @@ class DataBase
         }
     }
 
-    
+
     public function changestatus($id)
     {
         try {
