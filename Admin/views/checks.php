@@ -122,7 +122,7 @@
                     <tbody>
                         <?php
 
-                        require_once("../../Database.php");
+                        require_once("../../DataBase.php");
                         $db = new DataBase();
                         try {
                             $db->connect();
@@ -131,8 +131,8 @@
                                 $from = $_POST['from'];
                                 $to = $_POST['to'];
                                 $users = $db->showuserswithdate($from, $to);
-
                                 require_once('checks_templete.php');
+
                             } elseif (isset($_POST['submit2'])) {
                                 if (!empty($_POST['userselected'])) {
                                     $selected = $_POST['userselected'];

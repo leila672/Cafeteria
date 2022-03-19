@@ -12,7 +12,7 @@ function displaProducts(products) {
     <div class="col-lg-4 col-md-6 text-center">
     <div class="single-product-item">
       <div class="product-image">
-      <img src="../Admin/images/product_image/${prod.picture}" >
+      <img src="../Admin/images/product_image/${prod.picture}" style="width="1263px" ; height="200px" ">
       </div>
       <h3>${prod.name}</h3>
       <p class="product-price">${prod.price}<span class="a-price-symbol">EGP</span></p>

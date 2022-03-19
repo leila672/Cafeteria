@@ -131,17 +131,22 @@ class DataBase
 
     public function changeOrderStatus($id, $status)
     {
-        try {
+        try
+        {
 
-            $sql = 'UPDATE `orders` SET `status`="' . $status . '" WHERE id =' . $id . ' ';
+            $sql = 'UPDATE `orders` SET `status`="'.$status.'" WHERE id ='.$id.' ';
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             return true;
-        } catch (PDOException $e) {
+        }
+        catch(PDOException $e)
+        {
             echo $sql . "<br>" . $e->getMessage();
             return false;
         }
     }
+
+    
     public function changestatus($id)
     {
         try {

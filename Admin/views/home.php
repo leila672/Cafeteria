@@ -98,7 +98,7 @@
           <tbody>
             <?php
 
-             require_once("../../Database.php");
+             require_once("../../DataBase.php");
             $db = new DataBase();
             try {
               $db->connect();
@@ -117,7 +117,7 @@
                     <td><?php echo $order["roomNum"] ?></td>
                     <td><?php echo $order["ext"] ?></td>
                     <td>
-                      <select class="custom-select col-sm-6" id="status" onChange="changeStatus(this.value, <?php echo $order["id"] ?>)" name="status">
+                    <select class="custom-select col-sm-6" id="status" onChange="changeStatus(this.value, <?php echo $order["id"] ?>)" name="status">
                         <option value="">Select Action</option>
                         <option value="Processing" <?php if ($order["status"] == "Processing") {
                                                       echo "selected";
@@ -208,17 +208,17 @@
 
   <script>
   function changeStatus(status, id) {
-    
+
     $.ajax({
       type:'POST',
-      url:'Ajax/status.php',
+      url:'../Ajax/status.php',
       data: {
         id:id,
         ajax_type: "status",
         status:status 
-        
+
       },
-      
+
       success: function(data) {
         alert("order status has been changed ");
       }
