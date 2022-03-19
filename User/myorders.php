@@ -8,7 +8,7 @@ require_once ("../DataBase.php");
     <title>Cafeteria</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/animate.css">
@@ -22,7 +22,17 @@ require_once ("../DataBase.php");
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/ionicons.min.css">
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css"> -->
+
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/icomoon.css">
+<link rel="stylesheet" href="css/style.css">
+
     <style>
         table{
             font-size: larger;
@@ -62,7 +72,7 @@ require_once ("../DataBase.php");
                                 <input class="m-4 table-bordered table-dark" type="date" name="to">
                             </td>
                             <td>
-                                <input class="btn btn-warning" type="submit" name="submit" value="search">
+                                <input  type="submit" name="submit" value="search">
                             </td>
                         </tr>
                     </table>
@@ -104,7 +114,7 @@ require_once ("../DataBase.php");
                             ?>
                         <tr class="<?= $order['id'] ?>">
                             <td>
-                                <button class="btn btn-warning btn-xs" data-bs-toggle="collapse" data-bs-target="<?php echo "#demo"  . $order['id'] ?>">
+                                <button class="btn btn-default btn-xs" data-bs-toggle="collapse" data-bs-target="<?php echo "#demo"  . $order['id'] ?>" >
                                     <span class="text-dark">+</span>
                                 </button>
                             <td class="text-primary"><?php echo $order['id']?></td>
@@ -112,7 +122,7 @@ require_once ("../DataBase.php");
                             <td class="text-primary"><?php echo $order["status"]?></td><?php
                             if ($order["status"] == "Processing"){?>
                                 <td align="center">
-                                    <button class="trash btn btn btn-warning" name="status" data-value="<?=$order['id']?>"  id=<?php echo $order["id"]; ?>>Cancel</button>
+                                    <button class="trash btn btn" name="status" data-value="<?=$order['id']?>"  id=<?php echo $order["id"]; ?>>Cancel</button>
                                 </td>
                             <?php } ?>
                         </tr>
@@ -136,7 +146,7 @@ require_once ("../DataBase.php");
                                                         </div>
                                                         <div class="align-content-end">
                                                             <?php $total = ($product['price'])*($product['quantity']); array_push($sum, $total) ?>
-                                                            <p class="text-center text-warning" name="total">Total :<?php echo $total?></p>
+                                                            <p class="text-center " style="color:white"  name="total">Total :<?php echo $total?></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -145,7 +155,7 @@ require_once ("../DataBase.php");
                                             ?>
                                             <div>
                                                 <?php $gt = number_format(array_sum($sum),2) ?>
-                                                <p class="text-center text-warning" style="margin-top: 10px; margin-left: 300px;font-weight:bold">Grand Total: <?php echo $gt ?></p>
+                                                <p class="text-center" style="margin-top: 10px; margin-left: 300px;font-weight:bold;color:white">Grand Total: <?php echo $gt ?></p>
                                             </div>
                                         </div>
 
