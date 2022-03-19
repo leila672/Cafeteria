@@ -127,7 +127,9 @@
             </tbody>
           </table>
           <div class="cart-buttons">
-            <a id="total"  href="#" type="submit" class="boxed-btn black">Check Out</a>
+            <a id="total"  href="#" type="submit" class="boxed-btn black">Make Order</a>
+            <a  id="checkout"  href="#" type="submit" class="boxed-btn black mt-2">Check Out</a>
+
           </div>
         </div>
 
