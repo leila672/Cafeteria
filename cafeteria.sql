@@ -115,11 +115,25 @@ INSERT INTO `products` (
     `picture`,
     `status`
   )
-VALUES (1, 'pepsi', '5', 'Beverages', 'pepsi', '1'),
-  (2, 'dew', '5', 'Beverages', 'dew', '1'),
-  (3, 'tea', '5', 'Hot Drinks', 'tea', '1'),
-  (4, 'coffee', '8', 'Hot Drinks', 'coffee', '1'),
-  (5, 'red wine', '30', 'Alcohol', 'redWine', '1'),
+VALUES (1, 'pepsi', '5', 'Beverages', 'pepsi.png', '1'),
+  (2, 'dew', '5', 'Beverages', 'dew.png', '1'),
+  (3, 'tea', '5', 'Hot Drinks', 'tea.png', '1'),
+  (
+    4,
+    'coffee',
+    '8',
+    'Hot Drinks',
+    'coffee.jpg',
+    '1'
+  ),
+  (
+    5,
+    'red wine',
+    '30',
+    'Alcohol',
+    'redWine.jpg',
+    '1'
+  ),
   (
     6,
     'white wine',

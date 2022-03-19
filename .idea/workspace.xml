@@ -5,7 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="630fa303-4f48-493b-81f9-bd0f3be5ff89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Admin/views/login.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/DataBase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/myorders.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/myorders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/navbar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User/status.php" beforeDir="false" afterPath="$PROJECT_DIR$/User/status.php" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/User/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/User/user.html" afterDir="false" />
+=======
+>>>>>>> 566ad21cce5693788e9d4c05d7b41fce842c08a5
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/User/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -39,6 +47,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/User/js" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Admin/views" />
     </key>
@@ -60,7 +71,8 @@
       <workItem from="1647070049335" duration="12000" />
       <workItem from="1647070071529" duration="775000" />
       <workItem from="1647092513946" duration="1124000" />
-      <workItem from="1647110008319" duration="383000" />
+      <workItem from="1647110008319" duration="550000" />
+      <workItem from="1647552265381" duration="5962000" />
     </task>
     <servers />
   </component>

@@ -61,6 +61,7 @@ class DataBase
         $stmt->execute();
     }
 
+
     // $db->update("students",id, "name", $_REQUEST["name"], "password", $_REQUEST["password"], "email",$_REQUEST["email"], "room", $_REQUEST["room"], "path", $Picture);
     public function update($table_name, $id, ...$args)
     {
@@ -141,7 +142,30 @@ class DataBase
             return false;
         }
     }
+    public function changestatus($id)
+    {
+        try {
 
+            $sql = 'UPDATE `orders` SET `status`= "Canceled" WHERE id =' . $id . ' ';
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
+    public function cancelOrder($id){
+        try {
+            $sql = "DELETE FROM orders WHERE id = $id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return true;
+        }catch (PDOException $e){
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
     public function showusers()
     {
 

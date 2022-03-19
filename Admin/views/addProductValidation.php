@@ -46,7 +46,8 @@ $dp = new DataBase();
 
 $dp->connect();
 
-$imageNameNoExt = explode(".", $fileName);
+// add image with extension
+// $imageNameNoExt = explode(".", $fileName);
 
 $arrAllRows = $dp->select_All($tableNameProducts);
 
@@ -55,7 +56,7 @@ for ($i = 0; $i < count($arrAllRows); $i++) {
         $flagName = 1;
         $errorName = "Product already exists add another one";
     }
-    if (strtolower($arrAllRows[$i][4]) == strtolower($imageNameNoExt[0])) {
+    if (strtolower($arrAllRows[$i][4]) == strtolower($fileName)) {
         $errorfile2 = "Image already exists pick another one";
         $flagImage2 = 1;
     }
@@ -63,11 +64,11 @@ for ($i = 0; $i < count($arrAllRows); $i++) {
 
 if (!$flagName && !$flagImage1 && !$flagImage2) {
     try {
-        $dp->insert_Product($_POST['product'], $_POST['price'], $_POST['category'], $imageNameNoExt[0]);
+        $dp->insert_Product($_POST['product'], $_POST['price'], $_POST['category'], $fileName);
     } catch (PDOException $err) {
         die($err->getMessage());
     }
-    header("Location:tablePage.php");
+    header("Location:tableProducts.php");
 } else {
     header("Location:addProduct.php?errorName=$errorName&errorFile1=$errorFile1&errorFile2=$errorfile2");
 }
