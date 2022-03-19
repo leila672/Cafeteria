@@ -277,6 +277,21 @@ class DataBase
             return false;
         }
     }
+
+    public function userorderswiehdatw($uid,$from, $to)
+    {
+
+        try {
+            $query = "SELECT * FROM orders where  orders.user_id = $uid AND date between '$from' and '$to' ORDER BY date DESC " ;
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute();
+            $user_orders = $stmt->fetchAll();
+            return $user_orders;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
 
 trait productsQueries

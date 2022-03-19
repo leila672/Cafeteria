@@ -10,7 +10,7 @@ $db->connect();
 $TO = $_POST['tn'];
 $DATETIME = date('Y-m-d H:i:s');
   
-  $db->insert_into('orders',$DATETIME,'deliverd',$TO,$ID); 
+  $db->insert_into('orders',$DATETIME,'Processing',$TO,$ID); 
 
 
 ?>
