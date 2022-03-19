@@ -16,7 +16,7 @@ class DataBase
         $this->serverName  = "localhost";
         $this->userName = "root";
         $this->userPass  = "";
-        $this->dbName = "cafeteria";
+        $this->dbName = "Cafeteria";
         $this->charSet = "utf8mb4";
 
         $this->dsn = "mysql:host=" . $this->serverName . "; dbname=" . $this->dbName . "; charset=" . $this->charSet;
@@ -151,6 +151,17 @@ class DataBase
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
+    public function cancelOrder($id){
+        try {
+            $sql = "DELETE FROM orders WHERE id = $id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            return true;
+        }catch (PDOException $e){
             echo $sql . "<br>" . $e->getMessage();
             return false;
         }

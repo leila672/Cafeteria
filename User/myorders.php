@@ -33,39 +33,19 @@ require_once ("../DataBase.php");
 <body>
     <?php
     //======================================NavBar==================================
-    //require_once("navbar.php");
+    require_once("navbar.php");
     //=======================================End NavBar=============================
     ?>
-    <!-- nav -->
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="home.php" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="myorders.php" class="nav-link">My Orders</a></li>
-                    <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- END nav -->
-
 
     <section class="container user-home">
-        <div class="d-flex justify-content-between align-items-center pt-3" >
-            <h2><a href="myorders.php"> My Orders</a> </h2>
-        </div>
         <hr />
-        <div class="container">
-            <div class="row">
+        <div class="container" >
+            <div class="row mt-5">
                 <?
                     //require_once ("../Admin/views/filterswithdate.php")
                 ?>
                 <!-- Filter With Date -->
-                <form class="mt-3"  method="post" action="">
+                <form class="mt-5"  method="post" action="">
                     <!-- date -->
                     <table class="col-8 d-flex" style="left: 20%;">
                         <tr>
@@ -73,13 +53,13 @@ require_once ("../DataBase.php");
                                 <h4 class="mt-2" style="display: inline-block;">From:</h4>
                             </td>
                             <td>
-                                <input class="m-4" type="date" name="from">
+                                <input class="m-4 table-bordered table-dark" type="date" name="from">
                             </td>
                             <td>
                                 <h4 class="mt-2" style="display: inline-block;">To:</h4>
                             </td>
                             <td>
-                                <input class="m-4" type="date" name="to">
+                                <input class="m-4 table-bordered table-dark" type="date" name="to">
                             </td>
                             <td>
                                 <input class="btn btn-warning" type="submit" name="submit" value="search">
@@ -109,7 +89,6 @@ require_once ("../DataBase.php");
                             <th>Order ID</th>
                             <th>Date</th>
                             <th>Status</th>
-                            <th>Price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -125,23 +104,15 @@ require_once ("../DataBase.php");
                             ?>
                         <tr class="<?= $order['id'] ?>">
                             <td>
-                                <button class="btn btn-default btn-xs" data-bs-toggle="collapse" data-bs-target="<?php echo "#demo" . $order['id'] ?>">
-                                    <span>+</span>
+                                <button class="btn btn-warning btn-xs" data-bs-toggle="collapse" data-bs-target="<?php echo "#demo"  . $order['id'] ?>">
+                                    <span class="text-dark">+</span>
                                 </button>
                             <td class="text-primary"><?php echo $order['id']?></td>
                             <td class="text-primary"><?php echo $order["date"]?></td>
-                            <td class="text-primary"><?php echo $order["status"]?></td>
-                            <td class="text-primary"><?php echo $order["totalPrice"]?></td>
-                            <?php
-
-                            //================================Debugger===================================
-                            ini_set('display_errors', 1);
-                            ini_set('display_startup_errors', 1);
-                            error_reporting(E_ALL);
-                            //===========================================================================
+                            <td class="text-primary"><?php echo $order["status"]?></td><?php
                             if ($order["status"] == "processing"){?>
                                 <td align="center">
-                                    <a class="btn btn btn-warning" name="status" onclick="changestatus(<?=$order['id']?>)"  href="#" id=<?php echo $order["id"]; ?>>Cancel</a>
+                                    <button class="trash btn btn btn-warning" name="status" data-value="<?=$order['id']?>"  id=<?php echo $order["id"]; ?>>Cancel</button>
                                 </td>
                             <?php } ?>
                         </tr>
@@ -157,20 +128,21 @@ require_once ("../DataBase.php");
                                             foreach ($products as $product) {
                                                 ?>
                                                 <div class="col-xs-3 " style="margin: 10px;">
-                                                    <div class="thumbnail">
-                                                        <img src="<?php echo "../images/product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
+                                                    <div class="thumbnail d-flex align-items-baseline">
+                                                        <img src="<?php echo "../Admin/images/product_image/" . $product['picture'] ?>" class="col-xs-3" width="75px" class="img-rounded">
                                                         <div class="caption">
-                                                            <p>EGP <?php echo $product['price'] ?></p>
+                                                            <p>EGP <?php echo $product['price'] ?><input type="hidden" class="iPrice" value="$product[price]"></p>
+                                                            <p>Quantity : <?php  echo $product['quantity'] ?><input type="hidden" class="iQuantity" value="$product[quantity]"></p>
+                                                        </div>
+                                                        <div>
+                                                            <?php $total = ($product['price'])*($product['quantity']); ?>
+                                                            <p class=" total text-center text-warning">Total :<?php echo $total?></p>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <?php
                                             }
                                             ?>
-                                        </div>
-                                        <p> Total : <?php echo $order["totalPrice"] ?>
-                                        <div>
                                         </div>
 
                             </td>
@@ -202,26 +174,31 @@ require_once ("../DataBase.php");
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script src="js/jquery.timepicker.min.js"></script>
-    <script src="js/scrollax.min.js"></script>
     <script src="js/range.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script>
-    <script src="js/main.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-        function changestatus(id){
-            $.ajax({
-                type: "POST",
-                url: "status.php",
-                data: {
-                    id:id
-                    ajax_type: "status",
-                },
-                success: function(data) {
-                    alert("order status has been changed ");
-                }
-            });
+        //========================total price============================
+       /* let iPrice = document.getElementsByClassName('iPrice')
+        let iQuantity = document.getElementsByClassName('iQuantity')
+        let iTotal = document.getElementsByClassName('iTotal')
+        let gTotal = document.getElementById('gtotal')
+
+        function subtotal(){
+            gt=0;
+            for (i=0;i<iPrice.length;i++){
+                iTotal[i].innerText=(iPrice[i].value)*(iQuantity[i].value);
+                gt=gt+(iPrice[i].value)*(iQuantity[i].value);
+            }
         }
+        subtotal();
+*/
+        //========================cancel order===========================
+        let thebtn = document.getElementsByClassName('trash')[0]
+        let theid = thebtn.dataset.value
+        thebtn.addEventListener("click", function (){
+            let linkk= `./status.php?id=${theid}`;
+            location.assign(linkk)
+        })
     </script>
 </body>
