@@ -2,9 +2,8 @@ let productsContainer = document.getElementById("prod");
 
 async function getprod() {
   let products = await (await fetch("products.php")).json();
-   
-  displaProducts(products);
 
+  displaProducts(products);
 }
 
 function displaProducts(products) {
@@ -13,7 +12,7 @@ function displaProducts(products) {
     <div class="col-lg-4 col-md-6 text-center">
     <div class="single-product-item">
       <div class="product-image">
-      <img src="../Admin/images/product_image/${prod.picture}.png" >
+      <img src="../Admin/images/product_image/${prod.picture}" >
       </div>
       <h3>${prod.name}</h3>
       <p class="product-price">${prod.price}<span class="a-price-symbol">EGP</span></p>
@@ -23,8 +22,6 @@ function displaProducts(products) {
  
         `;
   }
-
-
 }
 
 getprod();
