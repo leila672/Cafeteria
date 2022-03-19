@@ -124,7 +124,7 @@ require_once ("../DataBase.php");
 
                                             <?php
                                             $products = $db->getProductsInOrders($order['id']);
-
+                                            $sum =[];
                                             foreach ($products as $product) {
                                                 ?>
                                                 <div class="col-xs-3 " style="margin: 10px;">
@@ -134,15 +134,19 @@ require_once ("../DataBase.php");
                                                             <p>EGP <?php echo $product['price'] ?><input type="hidden" class="iPrice" value="$product[price]"></p>
                                                             <p>Quantity : <?php  echo $product['quantity'] ?><input type="hidden" class="iQuantity" value="$product[quantity]"></p>
                                                         </div>
-                                                        <div>
-                                                            <?php $total = ($product['price'])*($product['quantity']); ?>
-                                                            <p class=" total text-center text-warning">Total :<?php echo $total?></p>
+                                                        <div class="align-content-end">
+                                                            <?php $total = ($product['price'])*($product['quantity']); array_push($sum, $total) ?>
+                                                            <p class="text-center text-warning" name="total">Total :<?php echo $total?></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <?php
                                             }
                                             ?>
+                                            <div>
+                                                <?php $gt = number_format(array_sum($sum),2) ?>
+                                                <p class="text-center text-warning" style="margin-top: 10px; margin-left: 300px;font-weight:bold">Grand Total: <?php echo $gt ?></p>
+                                            </div>
                                         </div>
 
                             </td>
