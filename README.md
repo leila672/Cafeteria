@@ -26,9 +26,9 @@ There is no need to install any software to use this app.
 **note:** you won't able to cancel your order if it is on deliver status.
 
 #### Team Members
-1-Alaa Gamal
-2- Hagar Ayman
-3- Laila Tariq
-4- Mohamed Farid
-5- Mohamed Mohy
-6- Yosra Hashem
+1-Alaa Gamal <br />
+2- Hagar Ayman <br />
+3- Laila Tariq <br />
+4- Mohamed Farid <br />
+5- Mohamed Mohy <br />
+6- Yosra Hashem <br />
