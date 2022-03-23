@@ -2,11 +2,19 @@
 
 This cafeteria website helps you to manage your coffee shop, also facilitate the client's requests such as make and receive orders.
 
+<p align="center">
+<img src="https://images.squarespace-cdn.com/content/v1/5cf0800995d43f0001efe193/1564093822802-B6FN7LH77MNOXMDNBD0L/15LMAIN.jpg?format=2500w"/>
+</p>
+
+---
+
 # Getting Started
 
 By cloning this repo to your machine you will have a copy of this project and also a copy of database schema.
 
 You can add your own cafetria products, users and admins to database, from that you should be ready to go.
+
+---
 
 # Prerequisties
 
@@ -35,6 +43,8 @@ You can add your own cafetria products, users and admins to database, from that 
 2. **"My Orders"** page allows you to see your orders and its status.<br />
    **note:** you won't able to cancel your order if it is on deliver status.
 
+---
+
 ## ▶️ Demo
 
 <!-- ![demo]() -->
@@ -54,3 +64,6 @@ You can add your own cafetria products, users and admins to database, from that 
 - **[Mohamed Farid](https://github.com/mohamedfarid14)**
 
 - **[Yosra Hashem](https://github.com/yosra-hashem)**
+
+<p align="center">
+<img src="https://media0.giphy.com/media/mBLYrKaZJACmtum22X/200.gif" /></p>
