@@ -47,7 +47,7 @@ You can add your own cafetria products, users and admins to database, from that 
 
 ## ▶️ Demo
 
-<!-- ![demo]() -->
+![demo](../Cafeteria/Demo/Demo.gif)
 
 ---
 
